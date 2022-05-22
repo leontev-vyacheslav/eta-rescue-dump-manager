@@ -1,0 +1,34 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  margin: auto;
+  padding: 0.5rem;
+}
+
+.app-popup {
+  outline: 0;
+}
+
+.app-popup .dx-popup-content {
+  padding: 10px;
+}
+
+.app-popup .dx-popup-title.dx-toolbar .dx-toolbar-items-container {
+  height: 46px;
+}
+
+.dx-dialog .dx-toolbar-items-container{
+  height: 46px !important;
+}
+
+.app-view-container.dx-scrollable {
+  height: calc(100vh - 70px);
+}
+
+.app-view-container.dx-textarea {
+  height: calc(100vh - 70px);
+}
+
+.app-view-container.dx-form {
+  height: calc(100vh - 70px);
+  padding: 10px;
+}

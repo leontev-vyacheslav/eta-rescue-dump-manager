@@ -1,0 +1,7 @@
+import { RescueDumpServerModel } from './rescue-dump-server-model';
+
+export type AppSettingsModel = {
+  invalidationCacheInterval: number;
+  lastActiveRescueDumpServerId: number | null;
+  rescueDumpServers: RescueDumpServerModel[];
+};

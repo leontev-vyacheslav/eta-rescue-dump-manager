@@ -1,0 +1,25 @@
+.about-dialog-content {
+  display: grid;
+  grid-template-rows: 1fr 50px;
+  gap: 20px;
+  height: 100%;
+}
+
+.about-dialog-content__info {
+  display: flex;
+  gap: 20px;
+}
+
+.about-dialog-content__info__text {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  gap: 10px
+}
+
+.about-dialog-content__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+}

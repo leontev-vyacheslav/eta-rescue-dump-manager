@@ -1,0 +1,12 @@
+.rescue-dump-list .dx-empty-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh);
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+.rescue-dump-list .dx-list-item-selected {
+  color: #ff5722 !important;
+}

@@ -1,0 +1,19 @@
+.main-title {
+  display: flex;
+  column-gap: 0.5rem;
+  -webkit-app-region: drag;
+  width: 100%;
+  text-transform: uppercase;
+  align-items: center;
+  font-size: 18px;
+  padding-bottom: 5px;
+}
+
+.main-title__title {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  color: #ff5722;
+  letter-spacing: 2px;
+  font-size: 18px;
+}

@@ -1,0 +1,11 @@
+.rescue-dump-file-viewer {
+  font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 1px;
+  line-height: 1.75;
+  font-size: 14px;
+}
+
+.rescue-dump-file-viewer .dx-texteditor-input {
+  white-space: pre !important;
+  overflow-wrap: normal;
+}

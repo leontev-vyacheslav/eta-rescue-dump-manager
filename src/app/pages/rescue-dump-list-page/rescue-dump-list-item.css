@@ -1,0 +1,15 @@
+.rescue-dump-list-item {
+  display: flex;
+}
+
+.rescue-dump-list-item__content {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 35px 75px 1fr;
+  grid-template-areas: "a b c";
+  row-gap: 8px;
+  font-size: 14px;
+}
+.rescue-dump-list-item__button {
+  align-self: center;
+}

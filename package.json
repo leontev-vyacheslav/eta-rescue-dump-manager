@@ -1,0 +1,118 @@
+{
+  "name": "rescue-dump-manager",
+  "productName": "ETA rescue dump manager",
+  "version": "1.0.0",
+  "description": "ETA rescue dump manager",
+  "main": ".webpack/main",
+  "scripts": {
+    "start": "cross-env NODE_ENV=dev electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "eslint --ext .ts,.tsx ."
+  },
+  "keywords": [],
+  "author": {
+    "name": "Leo",
+    "email": "eta.development.leo@outlook.com"
+  },
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "rescue-dump-manager"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ],
+      "plugins": [
+        [
+          "@electron-forge/plugin-webpack",
+          {
+            "mainConfig": "./webpack.main.config.js",
+            "renderer": {
+              "config": "./webpack.renderer.config.js",
+              "entryPoints": [
+                {
+                  "html": "./src/index.html",
+                  "js": "./src/main-rendered-window.tsx",
+                  "name": "main_window",
+                  "preload": {
+                    "js": "./src/external-bridge.ts"
+                  }
+                }
+              ]
+            },
+            "port": 3002,
+            "loggerPort": 9002
+          }
+        ]
+      ]
+    }
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.63",
+    "@electron-forge/maker-deb": "^6.0.0-beta.63",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.63",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
+    "@electron-forge/maker-zip": "^6.0.0-beta.63",
+    "@electron-forge/plugin-webpack": "6.0.0-beta.63",
+    "@types/adm-zip": "^0.5.0",
+    "@types/eventsource": "^1.1.8",
+    "@types/node-fetch": "^2.6.1",
+    "@types/react": "^17.0.43",
+    "@types/react-dom": "^17.0.14",
+    "@types/tough-cookie": "^4.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "@vercel/webpack-asset-relocator-loader": "1.7.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.1",
+    "electron": "^18.2.0",
+    "eslint": "^8.0.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "fork-ts-checker-webpack-plugin": "^7.2.11",
+    "node-loader": "^2.0.0",
+    "style-loader": "~3.3.1",
+    "svg-url-loader": "^7.1.1",
+    "ts-loader": "^9.3.0",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "abort-controller": "^3.0.0",
+    "adm-zip": "^0.5.9",
+    "axios": "^0.26.1",
+    "devextreme": "^21.2.7",
+    "devextreme-react": "^21.2.7",
+    "electron-log": "^4.4.7",
+    "electron-squirrel-startup": "^1.0.0",
+    "eventsource": "^1.0.7",
+    "fetch-cookie": "^0.11.0",
+    "node-fetch": "^2.6.7",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-icons": "^4.3.1",
+    "react-router-dom": "^6.3.0",
+    "tough-cookie": "^4.0.0",
+    "ws": "^8.6.0"
+  }
+}
