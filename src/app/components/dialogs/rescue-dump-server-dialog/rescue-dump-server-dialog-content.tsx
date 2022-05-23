@@ -110,7 +110,7 @@ export const RescueDumpServerDialogContent = () => {
           type={'normal'}
           text={DialogConstants.ButtonCaptions.Cancel}
           width={DialogConstants.ButtonWidths.Normal}
-          onClick={() => showDialog(RescueDumpServerDialog.name,  { visible: false } as DialogProps)}
+          onClick={() => showDialog('RescueDumpServerDialog', { visible: false } as DialogProps)}
         />
       </div>
     </>

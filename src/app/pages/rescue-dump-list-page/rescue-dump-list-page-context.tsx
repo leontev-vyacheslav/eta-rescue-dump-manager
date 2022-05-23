@@ -21,12 +21,12 @@ function RescueDumpListPageProvider (props: any) {
 
   const showDialog = useCallback((name: string, dialogProps: DialogProps) => {
     switch (name) {
-      case LoginDialog.name:
+      case 'LoginDialog':
         setLoginDialogProps(dialogProps as LoginDialogProps);
         break;
-        case TargetServerDialog.name:
-          setTargetDialogProps(dialogProps as TargetDialogProps);
-          break;
+      case 'TargetServerDialog':
+        setTargetDialogProps(dialogProps as TargetDialogProps);
+        break;
       default:
         break;
     }

@@ -8,7 +8,7 @@ import { TraceMessagingModel } from './trace-messaging-model';
 
 type App = {
   appSettingsRescueDumpServerChanged: (handler: any) => void;
-
+  openDevToolsAsync: () => Promise<void> | void;
   quitAppAsync: () => Promise<void> | void;
   storeAppSettingsAsync: (appSettings: AppSettingsModel) => Promise<void>;
   loadAppSettingsAsync: () => Promise<AppSettingsModel>;

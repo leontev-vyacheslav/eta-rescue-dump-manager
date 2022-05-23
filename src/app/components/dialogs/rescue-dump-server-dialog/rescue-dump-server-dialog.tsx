@@ -13,7 +13,7 @@ export const RescueDumpServerDialog = () => {
       visible={true}
       showTitle={true}
       showCloseButton={true}
-      onHidden={() => showDialog(RescueDumpServerDialog.name, { visible: false } as DialogProps)}
+      onHidden={() => showDialog('RescueDumpServerDialog', { visible: false } as DialogProps)}
       height={375}
       width={600}>
       <RescueDumpServerDialogContent />

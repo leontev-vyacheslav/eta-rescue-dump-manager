@@ -8,7 +8,6 @@ import { useSharedContext } from '../../contexts/shared-context';
 import { DownloadIcon, ExtensionIcon, PackageIcon, RemoveIcon, RestoreIcon } from '../../components/icons';
 import { useIsAuthRescueDumpServer } from '../../hooks/use-is-auth-rescue-dump-server';
 import { SecurityPassRequestModel } from '../../models/security-pass-request-model';
-import { TargetServerDialog } from '../../components/dialogs/target-server-dialog/target-server-dialog';
 import { TargetDialogProps } from '../../models/target-dialog-props';
 import { useRescueDumpListPageContext } from './rescue-dump-list-page-context';
 import { RestorationTraceMessageCommandModel } from '../../models/restoration-trace-message-command-model';
@@ -102,7 +101,7 @@ export const useRescueDumpListRowMenuItems = ({ item }: RescueDumpListItemProps)
         text: 'Restore from...',
         icon: () => <RestoreIcon size={24} />,
         onClick: async () => {
-          showDialog(TargetServerDialog.name, {
+          showDialog('TargetServerDialog', {
             visible: true,
             callback: async (serverName: string) => {
               if(serverName) {

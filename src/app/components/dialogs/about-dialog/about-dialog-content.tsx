@@ -3,7 +3,6 @@ import Button from 'devextreme-react/button';
 import { DialogConstants } from '../../../constants/dialogs';
 import { AboutDialogIcon } from '../../icons';
 import { useCommonDialogsContext } from '../../../contexts/common-dialogs-context';
-import { AboutDialog } from './about-dialog';
 import { DialogProps } from '../../../models/dialog-props';
 
 export const AboutDialogContent = () => {
@@ -24,7 +23,7 @@ export const AboutDialogContent = () => {
           type={'default'}
           text={DialogConstants.ButtonCaptions.Ok}
           width={DialogConstants.ButtonWidths.Normal}
-          onClick={() => showDialog(AboutDialog.name, { visible: false } as DialogProps)}
+          onClick={() => showDialog('AboutDialog', { visible: false } as DialogProps)}
         />
       </div>
     </div>

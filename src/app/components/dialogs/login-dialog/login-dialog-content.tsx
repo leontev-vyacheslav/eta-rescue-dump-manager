@@ -18,9 +18,9 @@ export const LoginDialogContent = ({ rescueDumpServer }: { rescueDumpServer: Res
   const formRef = useRef<Form>();
 
   const [currentLogin] = useState( {
-      userName: rescueDumpServer.login?.userName,
-      password: rescueDumpServer.login?.password,
-      serverName:  rescueDumpServer.name
+      userName: rescueDumpServer?.login?.userName,
+      password: rescueDumpServer?.login?.password,
+      serverName:  rescueDumpServer?.name
     } as LoginModel);
 
   const buttonOkClickHandlerAsync = useCallback(async () => {
@@ -113,7 +113,7 @@ export const LoginDialogContent = ({ rescueDumpServer }: { rescueDumpServer: Res
           type={'normal'}
           text={DialogConstants.ButtonCaptions.Cancel}
           width={DialogConstants.ButtonWidths.Normal}
-          onClick={() => showDialog(LoginDialog.name,  { visible: false } as DialogProps)}
+          onClick={() => showDialog('LoginDialog', { visible: false } as DialogProps)}
         />
       </div>
     </>

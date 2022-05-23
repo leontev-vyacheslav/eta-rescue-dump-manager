@@ -4,9 +4,8 @@ import { MenuItemModel } from '../../models/menu-item-model';
 import { useCommonDialogsContext } from '../../contexts/common-dialogs-context';
 import { useExternalBridgeContext } from '../../contexts/external-bridge-context';
 import { useSharedContext } from '../../contexts/shared-context';
-import { AboutIcon, BackIcon, ExitIcon, MenuIcon, RefreshIcon, SaveIcon, SettingsIcon } from '../icons';
+import { AboutIcon, BackIcon, ExitIcon, MenuIcon, RefreshIcon, SaveIcon, SettingsIcon, ToolsIcon } from '../icons';
 import { useMemo } from 'react';
-import { AboutDialog } from '../dialogs/about-dialog/about-dialog';
 import { DialogProps } from '../../models/dialog-props';
 
 const app = window.externalBridge.app;
@@ -61,7 +60,14 @@ export const useFileMenuItems = () => {
       {
         text: 'About...',
         icon: () => <AboutIcon size={24} />,
-        onClick: () => showDialog(AboutDialog.name, { visible: true } as DialogProps)
+        onClick: () => showDialog('AboutDialog', { visible: true } as DialogProps)
+      },
+      {
+        text: 'Dev tools...',
+        icon: () => <ToolsIcon size={24} />,
+        onClick: async () => {
+          await app.openDevToolsAsync();
+        }
       },
       {
         text: 'Exit',

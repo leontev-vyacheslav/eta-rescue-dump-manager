@@ -13,7 +13,7 @@ const AboutDialog = () => {
       visible={true}
       showTitle={true}
       showCloseButton={true}
-      onHidden={() => showDialog(AboutDialog.name,  { visible: false } as DialogProps)}
+      onHidden={() => showDialog('AboutDialog', { visible: false } as DialogProps)}
       height={200}
       width={600}>
         <AboutDialogContent />

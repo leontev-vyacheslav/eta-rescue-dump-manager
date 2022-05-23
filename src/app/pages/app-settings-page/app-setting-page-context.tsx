@@ -18,7 +18,7 @@ function AppSettingPageContextProvider (props: any) {
   const showDialog = useCallback((name: string, dialogProps: DialogProps) => {
 
     switch (name) {
-      case RescueDumpServerDialog.name:
+      case 'RescueDumpServerDialog':
         setAddServerDialogProps(dialogProps);
         break;
       default:

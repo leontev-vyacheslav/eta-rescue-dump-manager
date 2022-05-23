@@ -5,7 +5,6 @@ import { useSharedContext } from '../../contexts/shared-context';
 import { useIsAuthRescueDumpServer } from '../../hooks/use-is-auth-rescue-dump-server';
 import { RescueDumpListGroupProps } from '../../models/rescue-dump-list-group-props';
 import { ExtensionIcon, LoginIcon, LogoutIcon, PackageIcon } from '../../components/icons';
-import { LoginDialog } from '../../components/dialogs/login-dialog/login-dialog';
 import { LoginDialogProps } from '../../models/login-dialog-props';
 import { useRescueDumpListPageContext } from './rescue-dump-list-page-context';
 import { TraceMessageCommandModel, TraceMessageCommandName } from '../../models/trace-message-command-model';
@@ -40,7 +39,7 @@ export const useRescueDumpListGroupRowMenuItems = ({ group }: RescueDumpListGrou
       icon: () => <LoginIcon size={24} />,
       onClick: async () => {
         const currentActiveRescueDumpServer = appSettings.rescueDumpServers.find(s => s.name == serverName);
-        showDialog(LoginDialog.name, { rescueDumpServer: currentActiveRescueDumpServer, visible: true } as LoginDialogProps);
+        showDialog('LoginDialog', { rescueDumpServer: currentActiveRescueDumpServer, visible: true } as LoginDialogProps);
       },
       visible: !isAuth(serverName)
     },

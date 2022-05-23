@@ -3,7 +3,6 @@ import { Form, SimpleItem } from 'devextreme-react/ui/form';
 import { DialogConstants } from '../../../constants/dialogs';
 import { useSharedContext } from '../../../contexts/shared-context';
 import { useCallback, useRef, useState } from 'react';
-import { TargetServerDialog } from './target-server-dialog';
 import { TargetDialogCallback } from '../../../models/target-dialog-props';
 import { DialogProps } from '../../../models/dialog-props';
 import { useRescueDumpListPageContext } from '../../../pages/rescue-dump-list-page/rescue-dump-list-page-context';
@@ -23,7 +22,7 @@ export const TargetServerDialogContent = ( { callback }: {callback: TargetDialog
           validationGroupResult.validators?.find(() => true).focus();
         }
       } else {
-        showDialog(TargetServerDialog.name,  { visible: false } as DialogProps);
+        showDialog('TargetServerDialog',  { visible: false } as DialogProps);
 
         if(formData && (formData as any).name) {
           callback((formData as any).name);
@@ -59,7 +58,7 @@ export const TargetServerDialogContent = ( { callback }: {callback: TargetDialog
         type={'normal'}
         text={DialogConstants.ButtonCaptions.Cancel}
         width={DialogConstants.ButtonWidths.Normal}
-        onClick={() => showDialog(TargetServerDialog.name, { visible: false } as DialogProps)}
+        onClick={() => showDialog('TargetServerDialog', { visible: false } as DialogProps)}
       />
     </div>
     </>

@@ -18,6 +18,7 @@ export { MdOutlineEdit as EditIcon } from 'react-icons/md';
 export { IoAddOutline as AddIcon } from 'react-icons/io5';
 export { MdRestore as RestoreIcon } from 'react-icons/md';
 export { IoCloudDownloadOutline as DownloadIcon } from 'react-icons/io5';
+export { VscTools as ToolsIcon } from 'react-icons/vsc';
 
 // Dialog icons
 export { FiPackage as AboutDialogIcon } from 'react-icons/fi';

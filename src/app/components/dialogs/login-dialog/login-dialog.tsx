@@ -26,7 +26,7 @@ export const LoginDialog = (props: LoginDialogProps ) => {
       visible={true}
       showTitle={true}
       showCloseButton={true}
-      onHidden={() => showDialog(LoginDialog.name, { visible: false } as DialogProps)}
+      onHidden={() => showDialog('LoginDialog', { visible: false } as DialogProps)}
       height={400}
       width={600}>
         <LoginDialogContent rescueDumpServer={rescueDumpServer} />

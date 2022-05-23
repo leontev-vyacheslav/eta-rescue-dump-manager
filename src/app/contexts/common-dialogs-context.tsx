@@ -13,7 +13,7 @@ function CommonDialogsContextProvider(props: any) {
 
   const showDialog = useCallback((name: string, dialogProps: DialogProps) => {
     switch (name) {
-      case AboutDialog.name:
+      case 'AboutDialog':
         setAboutDialogProps(dialogProps);
         break;
       default:

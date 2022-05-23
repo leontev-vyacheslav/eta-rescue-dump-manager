@@ -15,7 +15,7 @@ export const TargetServerDialog = ( props: TargetDialogProps) => {
       visible={true}
       showTitle={true}
       showCloseButton={true}
-      onHidden={() => showDialog(TargetServerDialog.name, { visible: false } as DialogProps)}
+      onHidden={() => showDialog('TargetServerDialog', { visible: false } as DialogProps)}
       height={200}
       width={600}>
         <TargetServerDialogContent callback={callback} />

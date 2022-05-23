@@ -39,8 +39,6 @@ global.appSettings = {
 export let browserWindow: BrowserWindow = null;
 let connect: HubConnection = null;
 
-
-
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
@@ -52,7 +50,7 @@ app.on('ready', () => {
   if (!app.isPackaged) {
     browserWindow.webContents.openDevTools();
   }
-  
+
   browserWindow.on('ready-to-show', () => {
     if (process.env.START_MINIMIZED) {
       browserWindow.minimize();
@@ -80,6 +78,10 @@ ipcMain.handle('log:write', async (_, args) => {
   if(message) {
     (logger as any)[type](message);
   }
+});
+
+ipcMain.handle('app:openDevTools', () => {
+  browserWindow.webContents.openDevTools();
 });
 
 ipcMain.handle('app:appQuitAsync', () => {

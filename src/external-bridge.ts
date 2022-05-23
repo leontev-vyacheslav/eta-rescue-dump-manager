@@ -48,6 +48,10 @@ contextBridge.exposeInMainWorld('externalBridge', {
       ipcRenderer.on('app-settings-rescue-dump-server-changed', handler);
     },
 
+    openDevToolsAsync: async() => {
+      return await ipcRenderer.invoke('app:openDevTools');
+    },
+
     quitAppAsync: async () => {
       return await ipcRenderer.invoke('app:appQuitAsync');
     },

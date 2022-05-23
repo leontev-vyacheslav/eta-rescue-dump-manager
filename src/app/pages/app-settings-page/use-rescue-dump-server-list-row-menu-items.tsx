@@ -4,7 +4,6 @@ import { useCallback, useMemo } from 'react';
 import { useSharedContext } from '../../contexts/shared-context';
 import { TraceMessagingModel } from '../../models/trace-messaging-model';
 import { BookmarkIcon, EditIcon, ExtensionIcon, RemoveIcon, TraceIcon } from '../../components/icons';
-import { RescueDumpServerDialog } from '../../components/dialogs/rescue-dump-server-dialog/rescue-dump-server-dialog';
 import { DialogProps } from '../../models/dialog-props';
 import { useAppSettingPageContext } from './app-setting-page-context';
 
@@ -67,7 +66,7 @@ export const useRescueDumpServerListRowMenuItems = () => {
             return;
           }
 
-          showDialog(RescueDumpServerDialog.name,  { visible: true } as DialogProps);
+          showDialog('RescueDumpServerDialog', { visible: true } as DialogProps);
         }
       },
       {
