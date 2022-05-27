@@ -33,18 +33,6 @@ export const LoginDialogContent = ({ rescueDumpServer }: { rescueDumpServer: Res
       }
     } else {
       const login = formData as LoginModel;
-      setAppSettings(previous => {
-        const currentRescueDumpServer = previous.rescueDumpServers.find(s => s.id === rescueDumpServer.id);
-        currentRescueDumpServer.login = login;
-
-        return { ...previous,
-          rescueDumpServers: [
-            ...previous.rescueDumpServers.filter(s => s.id !== rescueDumpServer.id),
-            currentRescueDumpServer
-          ].sort((a, b) => a.id - b.id)
-        };
-      });
-
       const authToken = await getAuthTokenAsync(rescueDumpServer, login);
 
       if (authToken && authToken.token) {
@@ -65,7 +53,20 @@ export const LoginDialogContent = ({ rescueDumpServer }: { rescueDumpServer: Res
       } else {
         notify({ message: 'The authorization was failed.' }, 'error', 5000);
       }
+
       showDialog(LoginDialog.name, { visible: false } as DialogProps);
+
+      setAppSettings(previous => {
+        const currentRescueDumpServer = previous.rescueDumpServers.find(s => s.id === rescueDumpServer.id);
+        currentRescueDumpServer.login = login;
+
+        return { ...previous,
+          rescueDumpServers: [
+            ...previous.rescueDumpServers.filter(s => s.id !== rescueDumpServer.id),
+            currentRescueDumpServer
+          ].sort((a, b) => a.id - b.id)
+        };
+      });
     }
   }, [getAuthTokenAsync, rescueDumpServer, setAppSettings, showDialog]);
 

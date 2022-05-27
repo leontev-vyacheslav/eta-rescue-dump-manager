@@ -4,7 +4,7 @@ import { useSharedContext } from '../../contexts/shared-context';
 import { RescueDumpServerListItem } from './rescue-dump-server-list-item';
 import { useAppSettingPageContext } from './app-setting-page-context';
 import { useRescueDumpServerListExtensionMenuItems } from './use-rescue-dump-server-list-extension-menu-items';
-import { MainMenu } from '../../components/menu/main-menu/main-menu';
+import { PageToolbar } from '../../components/page-toolbar/page-toolbar';
 
 export const RescueDumpServerList = () => {
   const { appSettings } = useSharedContext();
@@ -13,16 +13,7 @@ export const RescueDumpServerList = () => {
 
   return (
     <>
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <div style={{ flex: 1 }}>
-          <label className='dx-field-item-label dx-field-item-label-location-top'>
-            <span className='dx-field-item-label-content'>
-              <span className='dx-field-item-label-text'>Rescue dump server list:</span>
-            </span>
-          </label>
-        </div>
-        <MainMenu items={extensionMenuItems} />
-      </div>
+      <PageToolbar title={'Rescue dump server list'} menuItems={extensionMenuItems} />
       <List
         height={250}
         dataSource={appSettings ? appSettings.rescueDumpServers : []}

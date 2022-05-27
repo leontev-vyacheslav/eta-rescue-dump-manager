@@ -8,6 +8,8 @@ import { RescueDumpListGroup } from './rescue-dump-list-group';
 import { useSharedContext } from '../../contexts/shared-context';
 import { useExternalBridgeContext } from '../../contexts/external-bridge-context';
 import { RescueDumpListPageProvider, useRescueDumpListPageContext } from './rescue-dump-list-page-context';
+import { PageToolbar } from '../../components/page-toolbar/page-toolbar';
+import { useRescueDumpListTitleMenuItems } from './use-rescue-dump-list-title-menu-items';
 
 const RescueDumpListPageInternal = () => {
   const { getRescueDumpGroupedListAsync } = useExternalBridgeContext();
@@ -15,6 +17,7 @@ const RescueDumpListPageInternal = () => {
   const { setSelectedRescueDumpListItem } = useRescueDumpListPageContext();
   const [rescueDumpGroupedList, setRescueDumpGroupedList] = useState<RescueDumpListGroupModel[]>();
   const listRef = useRef<List>(null);
+  const menuItems = useRescueDumpListTitleMenuItems();
 
   useEffect(() => {
     (async () => {
@@ -44,35 +47,38 @@ const RescueDumpListPageInternal = () => {
   }, [activeRescueDumpServer, appSettings, getRescueDumpGroupedListAsync, refreshToken]);
 
   return rescueDumpGroupedList ? (
-    <List
-      ref={listRef}
-      className={'app-view-container rescue-dump-list'}
-      dataSource={rescueDumpGroupedList}
-      displayExpr={'description'}
-      selectionMode={'single'}
-      grouped
-      groupRender={(group: RescueDumpListGroupModel) => (
-        <RescueDumpListGroup
-          component={listRef.current.instance}
-          group={group}
-        />
-      )}
-      itemRender={(item: RescueDumpListItemModel) => <RescueDumpListItem item={item} />}
-      onItemClick={(e) => {
-        setSelectedRescueDumpListItem(e.itemData as unknown as RescueDumpListItemModel);
-      }}
-      onGroupRendered={e => {
-        if (collapsedRescueDumpListGroupKeys.current) {
-          collapsedRescueDumpListGroupKeys.current.forEach((groupKey) => {
-            if(e.groupData.key === groupKey) {
-              e.component.collapseGroup(e.groupData.index);
-            }
-          });
-        }
-      }}
-    />
+    <>
+      <PageToolbar title={'Rescue dump list'} menuItems={menuItems} />
+      <List
+        ref={listRef}
+        className={'app-view-container rescue-dump-list'}
+        dataSource={rescueDumpGroupedList}
+        displayExpr={'description'}
+        selectionMode={'single'}
+        grouped
+        groupRender={(group: RescueDumpListGroupModel) => (
+          <RescueDumpListGroup
+            component={listRef.current.instance}
+            group={group}
+          />
+        )}
+        itemRender={(item: RescueDumpListItemModel) => <RescueDumpListItem item={item} />}
+        onItemClick={(e) => {
+          setSelectedRescueDumpListItem(e.itemData as unknown as RescueDumpListItemModel);
+        }}
+        onGroupRendered={e => {
+          if (collapsedRescueDumpListGroupKeys.current) {
+            collapsedRescueDumpListGroupKeys.current.forEach((groupKey) => {
+              if(e.groupData.key === groupKey) {
+                e.component.collapseGroup(e.groupData.index);
+              }
+            });
+          }
+        }}
+      />
+    </>
   ) : (
-    <div style={{ overflow: 'hidden' }} className={'app-view-container dx-scrollable rescue-dump-list'}>
+    <div style={{ overflow: 'hidden', height: 'calc(100vh - 70px)' }} className={'app-view-container dx-scrollable rescue-dump-list'}>
       <span className='dx-empty-message'>No data to display</span>
     </div>
   );

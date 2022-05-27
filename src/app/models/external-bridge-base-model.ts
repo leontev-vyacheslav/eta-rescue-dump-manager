@@ -8,7 +8,7 @@ import { TraceMessagingModel } from './trace-messaging-model';
 
 type App = {
   appSettingsRescueDumpServerChanged: (handler: any) => void;
-  openDevToolsAsync: () => Promise<void> | void;
+  toggleDevToolsAsync: () => Promise<void> | void;
   quitAppAsync: () => Promise<void> | void;
   storeAppSettingsAsync: (appSettings: AppSettingsModel) => Promise<void>;
   loadAppSettingsAsync: () => Promise<AppSettingsModel>;
@@ -36,7 +36,9 @@ export type ExternalBridgeBaseModel = {
   createRescueDumpAsync: (rescueDumpServer: RescueDumpServerModel) => Promise<boolean>;
   getRescueDumpGroupedListAsync: (rescueDumpServer: RescueDumpServerModel) => Promise<RescueDumpListGroupModel[]>;
   getRescueDumpAsync: (rescueDumpServer: RescueDumpServerModel, fileId: string) => Promise<RescueDumpEntryModel[]>;
-  saveRescueDumpAsync: (rescueDumpServer: RescueDumpServerModel, fileId: string, name: string) => Promise<void>;
+  saveTextFileAsync:  (fileName: string, pathName: string, text: string ) => Promise<void>;
+  saveRescueDumpAsync: (rescueDumpServer: RescueDumpServerModel, fileId: string, fileName: string, pathName: string) => Promise<void>
+  saveRescueDumpAsAsync: (rescueDumpServer: RescueDumpServerModel, fileId: string, name: string) => Promise<void>;
   getRescueDumpContentAsync: (rescueDumpServer: RescueDumpServerModel, rescueDumpEntry: RescueDumpEntryModel) => Promise<string>;
   saveRescueDumpContentFileAsync: (rescueDumpServer: RescueDumpServerModel, fileId: string, name: string) => Promise<void>;
   getAuthTokenAsync: (rescueDumpServer: RescueDumpServerModel, login: LoginModel) => Promise<AuthTokenModel>;

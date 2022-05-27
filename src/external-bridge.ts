@@ -48,8 +48,8 @@ contextBridge.exposeInMainWorld('externalBridge', {
       ipcRenderer.on('app-settings-rescue-dump-server-changed', handler);
     },
 
-    openDevToolsAsync: async() => {
-      return await ipcRenderer.invoke('app:openDevTools');
+    toggleDevToolsAsync: async() => {
+      return await ipcRenderer.invoke('app:toggleDevToolsAsync');
     },
 
     quitAppAsync: async () => {
@@ -85,8 +85,16 @@ contextBridge.exposeInMainWorld('externalBridge', {
     return await ipcRenderer.invoke('data:getRescueDumpAsync', { rescueDumpServer: rescueDumpServer, fileId: fileId });
   },
 
-  saveRescueDumpAsync: async (rescueDumpServer: RescueDumpServerModel, fileId: string, name: string) => {
-    return await ipcRenderer.invoke('data:saveRescueDumpAsync', { rescueDumpServer: rescueDumpServer, fileId: fileId, name: name });
+  saveTextFileAsync:  async (fileName: string, pathName: string, text: string ) => {
+    return await ipcRenderer.invoke('data:saveTextFileAsync', { fileName: fileName, pathName: pathName, text: text });
+  },
+
+  saveRescueDumpAsAsync: async (rescueDumpServer: RescueDumpServerModel, fileId: string, name: string) => {
+    return await ipcRenderer.invoke('data:saveRescueDumpAsAsync', { rescueDumpServer: rescueDumpServer, fileId: fileId, name: name });
+  },
+
+  saveRescueDumpAsync: async (rescueDumpServer: RescueDumpServerModel, fileId: string, fileName: string, pathName: string) => {
+    return await ipcRenderer.invoke('data:saveRescueDumpAsync', { rescueDumpServer: rescueDumpServer, fileId: fileId, fileName: fileName, pathName: pathName });
   },
 
   getRescueDumpContentAsync: async (rescueDumpServer: RescueDumpServerModel, rescueDumpEntry: RescueDumpEntryModel) => {

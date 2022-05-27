@@ -21,11 +21,11 @@ body {
 }
 
 .app-view-container.dx-scrollable {
-  height: calc(100vh - 70px);
+  height: calc(100vh - 115px);
 }
 
 .app-view-container.dx-textarea {
-  height: calc(100vh - 70px);
+  height: calc(100vh - 115px);
 }
 
 .app-view-container.dx-form {

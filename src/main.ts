@@ -80,8 +80,8 @@ ipcMain.handle('log:write', async (_, args) => {
   }
 });
 
-ipcMain.handle('app:openDevTools', () => {
-  browserWindow.webContents.openDevTools();
+ipcMain.handle('app:toggleDevToolsAsync', () => {
+  browserWindow.webContents.toggleDevTools();
 });
 
 ipcMain.handle('app:appQuitAsync', () => {
@@ -153,11 +153,23 @@ ipcMain.handle('data:getRescueDumpContentAsync', async (_, args) => {
 });
 
 ipcMain.handle('data:saveRescueDumpAsync', async (_, args) => {
-  const { rescueDumpServer, fileId, name }: { rescueDumpServer: RescueDumpServerModel, fileId: string, name: string } = args;
+  const { rescueDumpServer, fileId, fileName, pathName }: { rescueDumpServer: RescueDumpServerModel; fileId: string; fileName: string, pathName: string } = args;
+
+  const zip = await getRescueDumpAsync(rescueDumpServer, fileId);
+  const filePath = path.join(app.getPath(pathName as any), `${fileName}.zip`);
+
+  if (zip) {
+    const content = zip.toBuffer();
+    await fs.writeFile(filePath, content, 'binary');
+  }
+}),
+
+ipcMain.handle('data:saveRescueDumpAsAsync', async (_, args) => {
+  const { rescueDumpServer, fileId, name }: { rescueDumpServer: RescueDumpServerModel; fileId: string; name: string } = args;
   const filePath = path.join(app.getPath('desktop'), `${name}.zip`);
 
   const saveDialogOptions = await dialog.showSaveDialog(browserWindow, {
-    defaultPath: filePath
+    defaultPath: filePath,
   });
 
   if (!saveDialogOptions.canceled && saveDialogOptions.filePath) {
@@ -168,6 +180,13 @@ ipcMain.handle('data:saveRescueDumpAsync', async (_, args) => {
       await fs.writeFile(saveDialogOptions.filePath, content, 'binary');
     }
   }
+});
+
+ipcMain.handle('data:saveTextFileAsync', async (_, args) => {
+  const { fileName, pathName, text }: { fileName: string, pathName: string, text: string } = args;
+  const filePath = path.join(app.getPath(pathName as any), fileName);
+
+  await fs.writeFile(filePath, text, 'utf-8');
 });
 
 ipcMain.handle('data:saveRescueDumpContentFileAsync', async (_, args) => {

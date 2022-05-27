@@ -16,7 +16,7 @@ import { TraceMessageCommandName } from '../../models/trace-message-command-mode
 export const useRescueDumpListRowMenuItems = ({ item }: RescueDumpListItemProps) => {
   const { setRefreshToken, activeRescueDumpServer, appSettings } = useSharedContext();
   const { showDialog, selectedRescueDumpListItem } = useRescueDumpListPageContext();
-  const { saveRescueDumpAsync, removeRescueDumpAsync } = useExternalBridgeContext();
+  const { saveRescueDumpAsAsync, removeRescueDumpAsync } = useExternalBridgeContext();
   const navigate = useNavigate();
   const isAuth = useIsAuthRescueDumpServer();
 
@@ -74,7 +74,7 @@ export const useRescueDumpListRowMenuItems = ({ item }: RescueDumpListItemProps)
         icon: () => <DownloadIcon size={24} />,
         onClick: async () => {
           if (selectedRescueDumpListItem) {
-            await saveRescueDumpAsync(activeRescueDumpServer, selectedRescueDumpListItem.fileId, selectedRescueDumpListItem.description);
+            await saveRescueDumpAsAsync(activeRescueDumpServer, selectedRescueDumpListItem.fileId, selectedRescueDumpListItem.description);
           }
         }
       },
@@ -114,5 +114,5 @@ export const useRescueDumpListRowMenuItems = ({ item }: RescueDumpListItemProps)
       }]
     }];
 
-  }, [isAuth, item.groupKey, selectedRescueDumpListItem, navigate, saveRescueDumpAsync, activeRescueDumpServer, appSettings.rescueDumpServers, removeRescueDumpAsync, setRefreshToken, showDialog, requestRestorationAsync]);
+  }, [isAuth, item.groupKey, selectedRescueDumpListItem, navigate, saveRescueDumpAsAsync, activeRescueDumpServer, appSettings.rescueDumpServers, removeRescueDumpAsync, setRefreshToken, showDialog, requestRestorationAsync]);
 };

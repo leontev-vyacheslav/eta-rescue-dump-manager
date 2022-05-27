@@ -66,7 +66,7 @@ export const useFileMenuItems = () => {
         text: 'Dev tools...',
         icon: () => <ToolsIcon size={24} />,
         onClick: async () => {
-          await app.openDevToolsAsync();
+          await app.toggleDevToolsAsync();
         }
       },
       {

@@ -41,11 +41,11 @@ const ExternalBridgeContextProvider = (props: any) => {
     }
   }, [setIsShowLoadPanel]);
 
-  const saveRescueDumpAsync = useCallback(async (rescueDumpServer: RescueDumpServerModel, fileId: string, name: string) => {
+  const saveRescueDumpAsAsync = useCallback(async (rescueDumpServer: RescueDumpServerModel, fileId: string, name: string) => {
     try {
       setIsShowLoadPanel(true);
 
-      return await window.externalBridge.saveRescueDumpAsync(rescueDumpServer, fileId, name);
+      return await window.externalBridge.saveRescueDumpAsAsync(rescueDumpServer, fileId, name);
     } finally {
       setIsShowLoadPanel(false);
     }
@@ -100,7 +100,7 @@ const ExternalBridgeContextProvider = (props: any) => {
     getRescueDumpGroupedListAsync,
     getRescueDumpAsync,
     getRescueDumpContentAsync,
-    saveRescueDumpAsync,
+    saveRescueDumpAsAsync,
     saveRescueDumpContentFileAsync,
     getAuthTokenAsync,
     removeRescueDumpAsync,
