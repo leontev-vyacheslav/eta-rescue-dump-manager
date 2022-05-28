@@ -24,6 +24,10 @@ body {
   height: calc(100vh - 115px);
 }
 
+.app-view-container.rescue-dump-content-list {
+  height: calc(100vh - 70px);
+}
+
 .app-view-container.dx-textarea {
   height: calc(100vh - 115px);
 }

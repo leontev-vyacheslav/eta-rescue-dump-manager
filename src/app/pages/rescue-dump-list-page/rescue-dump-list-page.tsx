@@ -12,12 +12,13 @@ import { PageToolbar } from '../../components/page-toolbar/page-toolbar';
 import { useRescueDumpListTitleMenuItems } from './use-rescue-dump-list-title-menu-items';
 
 const RescueDumpListPageInternal = () => {
-  const { getRescueDumpGroupedListAsync } = useExternalBridgeContext();
-  const { activeRescueDumpServer, refreshToken, appSettings, collapsedRescueDumpListGroupKeys } = useSharedContext();
-  const { setSelectedRescueDumpListItem } = useRescueDumpListPageContext();
-  const [rescueDumpGroupedList, setRescueDumpGroupedList] = useState<RescueDumpListGroupModel[]>();
   const listRef = useRef<List>(null);
-  const menuItems = useRescueDumpListTitleMenuItems();
+  const { getRescueDumpGroupedListAsync } = useExternalBridgeContext();
+  const { setSelectedRescueDumpListItem } = useRescueDumpListPageContext();
+  const { activeRescueDumpServer, refreshToken, appSettings, collapsedRescueDumpListGroupKeys } = useSharedContext();
+
+  const [rescueDumpGroupedList, setRescueDumpGroupedList] = useState<RescueDumpListGroupModel[]>();
+  const menuItems = useRescueDumpListTitleMenuItems({ listRef, rescueDumpGroupedList });
 
   useEffect(() => {
     (async () => {
@@ -50,6 +51,7 @@ const RescueDumpListPageInternal = () => {
     <>
       <PageToolbar title={'Rescue dump list'} menuItems={menuItems} />
       <List
+        id='rescue-dump-list'
         ref={listRef}
         className={'app-view-container rescue-dump-list'}
         dataSource={rescueDumpGroupedList}
@@ -58,7 +60,7 @@ const RescueDumpListPageInternal = () => {
         grouped
         groupRender={(group: RescueDumpListGroupModel) => (
           <RescueDumpListGroup
-            component={listRef.current.instance}
+            component={listRef}
             group={group}
           />
         )}

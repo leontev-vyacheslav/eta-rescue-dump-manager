@@ -19,6 +19,8 @@ export { IoAddOutline as AddIcon } from 'react-icons/io5';
 export { MdRestore as RestoreIcon } from 'react-icons/md';
 export { IoCloudDownloadOutline as DownloadIcon } from 'react-icons/io5';
 export { VscTools as ToolsIcon } from 'react-icons/vsc';
+export { BsArrowsCollapse as CollapseIcon } from 'react-icons/bs';
+export { BsArrowsExpand as ExpandIcon } from 'react-icons/bs';
 
 // Dialog icons
 export { FiPackage as AboutDialogIcon } from 'react-icons/fi';
