@@ -81,6 +81,10 @@ contextBridge.exposeInMainWorld('externalBridge', {
     return await ipcRenderer.invoke('data:getRescueDumpGroupedListAsync', { rescueDumpServer: rescueDumpServer });
   },
 
+  uploadRescueDumpAsync: async (rescueDumpServer: RescueDumpServerModel) => {
+    return await ipcRenderer.invoke('data:uploadRescueDumpAsync', { rescueDumpServer: rescueDumpServer });
+  },
+
   getRescueDumpAsync: async (rescueDumpServer: RescueDumpServerModel, fileId: string) => {
     return await ipcRenderer.invoke('data:getRescueDumpAsync', { rescueDumpServer: rescueDumpServer, fileId: fileId });
   },

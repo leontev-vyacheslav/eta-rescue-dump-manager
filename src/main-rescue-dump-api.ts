@@ -15,6 +15,11 @@ import { TraceMessagingModel } from './app/models/trace-messaging-model';
 import { RestorationRequestModel } from './app/models/restoration-request-model';
 import { browserWindow } from './main';
 import { storeAppSettingsAsync } from './main-storage-api';
+import { FormData } from 'formdata-node';
+// eslint-disable-next-line import/no-unresolved
+import { fileFromPath } from 'formdata-node/file-from-path';
+import fetch from 'node-fetch';
+import { FileCloudStorageFileInfo } from './app/models/file-cloud-storage-file-info';
 
 type SimpleRescueDumpAsyncFunc = (rescueDumpServer: RescueDumpServerModel) => Promise<boolean>;
 
@@ -52,6 +57,59 @@ const updateAuthTokenAsync = async (error: unknown, rescueDumpServer: RescueDump
       browserWindow.webContents.send('app-settings-rescue-dump-server-changed', { updatedRescueDumpServer: updatedRescueDumpServer });
     }
   }
+};
+
+export const uploadRescueDumpAsync = async (rescueDumpServer: RescueDumpServerModel, filePath: string) => {
+  if (existsSync(filePath)) {
+    const fileName = path.parse(filePath).name;
+    const ext = path.parse(filePath).ext;
+
+    if(ext && ext.toLowerCase() !== '.zip') {
+      return false;
+    }
+
+    const formData = new FormData();
+    const file = await fileFromPath(filePath);
+
+    if(file) {
+      const zip = new Zip(Buffer.from(await file.arrayBuffer()));
+      const isValid = zip.test();
+
+      if(!isValid) {
+        return false;
+      }
+    }
+
+    formData.set('file', file, `${fileName}.zip`);
+
+    const response = await fetch(`${rescueDumpServer.baseUrl}/api/files/upload`, {
+      method: 'POST',
+      body: formData as any,
+      headers: {
+        Authorization: `Bearer ${rescueDumpServer.authToken.token}`,
+        Accept: 'application/json',
+      },
+    });
+    if(response && response.status == 401) {
+      let result = null;
+      const error = {
+        response: {
+          status: 401
+        }
+      } as AxiosError;
+
+      await updateAuthTokenAsync(error, rescueDumpServer, async (updatedRescueDumpServer: RescueDumpServerModel) => {
+        result = await uploadRescueDumpAsync(updatedRescueDumpServer, filePath);
+      });
+
+      return result;
+    }
+    const result = await response.json() as FileCloudStorageFileInfo;
+
+    return result;
+  }
+
+  return null;
 };
 
 export const getRescueDumpAsync = async (rescueDumpServer: RescueDumpServerModel, fileId: string) => {

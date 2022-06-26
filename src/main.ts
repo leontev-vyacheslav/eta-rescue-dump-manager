@@ -14,7 +14,8 @@ import {
   createRescueDumpAsync,
   sendRequestSecurityPass,
   traceMessagingAsync,
-  restoreDatabaseAsync
+  restoreDatabaseAsync,
+  uploadRescueDumpAsync
 } from './main-rescue-dump-api';
 import { loadAppSettingsAsync, storeAppSettingsAsync } from './main-storage-api';
 import { LoginModel } from './app/models/login-model';
@@ -144,6 +145,29 @@ ipcMain.handle('data:getRescueDumpAsync', async (_, args) => {
   const { rescueDumpServer, fileId }: { rescueDumpServer: RescueDumpServerModel, fileId: string } = args;
 
   return await getRescueDumpEntryList(rescueDumpServer, fileId);
+});
+
+ipcMain.handle('data:uploadRescueDumpAsync', async (_, args) => {
+  const { rescueDumpServer }: { rescueDumpServer: RescueDumpServerModel} = args;
+
+  const openDialogOptions = await dialog.showOpenDialog(browserWindow, {
+    defaultPath: app.getPath('desktop'),
+    filters: [
+      {
+        name: 'Rescue Dumps',
+        extensions: ['zip'],
+      }
+    ],
+  });
+
+  if (!openDialogOptions.canceled) {
+    const filePath = openDialogOptions.filePaths.find(() => true);
+    if(filePath) {
+      return await uploadRescueDumpAsync(rescueDumpServer, filePath);
+    }
+  }
+
+  return false;
 });
 
 ipcMain.handle('data:getRescueDumpContentAsync', async (_, args) => {

@@ -14,7 +14,7 @@ const app = window.externalBridge.app;
 export const useRescueDumpListGroupRowMenuItems = ({ group }: RescueDumpListGroupProps) => {
   const { showDialog } = useRescueDumpListPageContext();
   const navigate = useNavigate();
-  const { appSettings, setAppSettings } = useSharedContext();
+  const { appSettings, setAppSettings, setIsShowLoadPanel } = useSharedContext();
   const isAuth = useIsAuthRescueDumpServer();
   const { key: serverName } = group;
 
@@ -31,6 +31,32 @@ export const useRescueDumpListGroupRowMenuItems = ({ group }: RescueDumpListGrou
             serverName: serverName
           } as TraceMessageCommandModel
         });
+      },
+      visible: isAuth(serverName)
+    },
+    {
+      text: 'Upload...',
+      icon: () => <PackageIcon size={24} />,
+      onClick: async () => {
+        try {
+          setIsShowLoadPanel(true);
+          const currentActiveRescueDumpServer = appSettings.rescueDumpServers.find(s => s.name == serverName);
+          const result = await window.externalBridge.uploadRescueDumpAsync(currentActiveRescueDumpServer);
+          
+          if(result !== null) {
+            notify({
+                message: `The rescue dump ${result.name} (${result.id}) was uploaded to a cloud storage in the folder ${currentActiveRescueDumpServer.name}.`,
+              },
+              'success',
+              5000
+            );
+          } else {
+            notify({ message: 'An error was happened!' }, 'error', 10000);
+          }
+        }
+        finally {
+          setIsShowLoadPanel(false);
+        }
       },
       visible: isAuth(serverName)
     },

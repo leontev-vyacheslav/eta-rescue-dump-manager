@@ -1,5 +1,6 @@
 import { AppSettingsModel } from './app-settings-model';
 import { AuthTokenModel } from './auth-token-model';
+import { FileCloudStorageFileInfo } from './file-cloud-storage-file-info';
 import { LoginModel } from './login-model';
 import { RescueDumpEntryModel } from './rescue-dump-entry-model';
 import { RescueDumpListGroupModel } from './rescue-dump-list-group-model';
@@ -35,6 +36,7 @@ export type ExternalBridgeBaseModel = {
   removeRescueDumpGroupedListAsync: () => Promise<void>;
   createRescueDumpAsync: (rescueDumpServer: RescueDumpServerModel) => Promise<boolean>;
   getRescueDumpGroupedListAsync: (rescueDumpServer: RescueDumpServerModel) => Promise<RescueDumpListGroupModel[]>;
+  uploadRescueDumpAsync:(rescueDumpServer: RescueDumpServerModel) => Promise<FileCloudStorageFileInfo>;
   getRescueDumpAsync: (rescueDumpServer: RescueDumpServerModel, fileId: string) => Promise<RescueDumpEntryModel[]>;
   saveTextFileAsync:  (fileName: string, pathName: string, text: string ) => Promise<void>;
   saveRescueDumpAsync: (rescueDumpServer: RescueDumpServerModel, fileId: string, fileName: string, pathName: string) => Promise<void>

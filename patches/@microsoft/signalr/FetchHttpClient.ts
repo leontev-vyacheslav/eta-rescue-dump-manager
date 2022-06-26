@@ -37,7 +37,7 @@ export class FetchHttpClient extends HttpClient {
             this._fetchType = fetch.bind(getGlobalThis());
         }
         if (typeof AbortController === "undefined") {
-            this._abortControllerType = abortControllerModule;
+            this._abortControllerType = abortControllerModule as any;
         } else {
             this._abortControllerType = AbortController;
         }
