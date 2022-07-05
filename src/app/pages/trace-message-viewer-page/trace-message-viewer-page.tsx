@@ -1,5 +1,5 @@
 import { TextArea } from 'devextreme-react/ui/text-area';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useSharedContext } from '../../contexts/shared-context';
 import { useLocation } from 'react-router-dom';
 import { RescueDumpServerModel } from '../../models/rescue-dump-server-model';
@@ -34,12 +34,11 @@ export const TraceMessageViewer = () => {
       }
 
       await signalR.buildAsync(selectedRescueDumpServer);
-
+      const textArea = textAreaRef.current.instance;
       try {
         setIsShowLoadPanel(true);
 
         await signalR.subscribe((event: any, args: any) => {
-          const textArea = textAreaRef.current.instance;
           const element = textArea.element().querySelector('textarea');
           const text = `${textArea.option('value')}${args}\r\n`;
           textArea.option('value', text);
@@ -49,18 +48,15 @@ export const TraceMessageViewer = () => {
 
         if (command.name === TraceMessageCommandName.createDump) {
           await window.externalBridge.createRescueDumpAsync(selectedRescueDumpServer);
-        } else if(command.name === TraceMessageCommandName.restoration) {
-
+        } else if (command.name === TraceMessageCommandName.restoration) {
           const restorationCommand = state as RestorationTraceMessageCommandModel;
-          if(restorationCommand.securityPass) {
-
+          if (restorationCommand.securityPass) {
             await window.externalBridge.restoreDatabaseAsync(selectedRescueDumpServer, {
               fileId: restorationCommand.fileId,
-              securityPass: restorationCommand.securityPass
+              securityPass: restorationCommand.securityPass,
             });
           }
         }
-
       } finally {
         await signalR.unsubscribe();
         await signalR.stopAsync();

@@ -8,6 +8,7 @@ import { ExtensionIcon, LoginIcon, LogoutIcon, PackageIcon } from '../../compone
 import { LoginDialogProps } from '../../models/login-dialog-props';
 import { useRescueDumpListPageContext } from './rescue-dump-list-page-context';
 import { TraceMessageCommandModel, TraceMessageCommandName } from '../../models/trace-message-command-model';
+import { confirm } from 'devextreme/ui/dialog';
 
 const app = window.externalBridge.app;
 
@@ -25,12 +26,15 @@ export const useRescueDumpListGroupRowMenuItems = ({ group }: RescueDumpListGrou
       text: 'Create dump...',
       icon: () => <PackageIcon size={24} />,
       onClick: async () => {
-        navigate('/trace-message-viewer', {
-          state: {
-            name: TraceMessageCommandName.createDump,
-            serverName: serverName
-          } as TraceMessageCommandModel
-        });
+        const dialogResult = await confirm(`It will be created a new rescue dump on ${serverName} server! Are you sure?`, 'Confirm');
+        if (dialogResult === true) {
+          navigate('/trace-message-viewer', {
+            state: {
+              name: TraceMessageCommandName.createDump,
+              serverName: serverName
+            } as TraceMessageCommandModel
+          });
+        }
       },
       visible: isAuth(serverName)
     },
@@ -42,7 +46,7 @@ export const useRescueDumpListGroupRowMenuItems = ({ group }: RescueDumpListGrou
           setIsShowLoadPanel(true);
           const currentActiveRescueDumpServer = appSettings.rescueDumpServers.find(s => s.name == serverName);
           const result = await window.externalBridge.uploadRescueDumpAsync(currentActiveRescueDumpServer);
-          
+
           if(result !== null) {
             notify({
                 message: `The rescue dump ${result.name} (${result.id}) was uploaded to a cloud storage in the folder ${currentActiveRescueDumpServer.name}.`,
@@ -90,5 +94,5 @@ export const useRescueDumpListGroupRowMenuItems = ({ group }: RescueDumpListGrou
       },
       visible: isAuth(serverName)
     }]
-  }], [appSettings, isAuth, navigate, serverName, setAppSettings, showDialog]);
+  }], [appSettings, isAuth, navigate, serverName, setAppSettings, setIsShowLoadPanel, showDialog]);
 };
