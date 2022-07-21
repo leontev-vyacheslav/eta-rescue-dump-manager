@@ -1,5 +1,6 @@
 import { AppSettingsModel } from './app-settings-model';
 import { AuthTokenModel } from './auth-token-model';
+import { DeviceReaderHealthStatusModel } from './device-reader-health-status-model';
 import { FileCloudStorageFileInfo } from './file-cloud-storage-file-info';
 import { LoginModel } from './login-model';
 import { RescueDumpEntryModel } from './rescue-dump-entry-model';
@@ -44,4 +45,5 @@ export type ExternalBridgeBaseModel = {
   getRescueDumpContentAsync: (rescueDumpServer: RescueDumpServerModel, rescueDumpEntry: RescueDumpEntryModel) => Promise<string>;
   saveRescueDumpContentFileAsync: (rescueDumpServer: RescueDumpServerModel, fileId: string, name: string) => Promise<void>;
   getAuthTokenAsync: (rescueDumpServer: RescueDumpServerModel, login: LoginModel) => Promise<AuthTokenModel>;
+  getDeviceReadersHealthStatusAsync: (rescueDumpServer: RescueDumpServerModel) => Promise<DeviceReaderHealthStatusModel[] | null>;
 };

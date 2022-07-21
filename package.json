@@ -9,6 +9,7 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
+    "reinstall": "yarn install",
     "lint": "eslint --ext .ts,.tsx ."
   },
   "keywords": [],
@@ -60,8 +61,8 @@
                 }
               ]
             },
-            "port": 3002,
-            "loggerPort": 9002
+            "port": 3003,
+            "loggerPort": 9003
           }
         ]
       ]
@@ -80,8 +81,8 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@types/tough-cookie": "^4.0.2",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
     "@vercel/webpack-asset-relocator-loader": "1.7.0",
     "css-loader": "^6.7.1",
     "electron": "^19.0.4",
@@ -102,12 +103,12 @@
     "axios": "^0.27.2",
     "devextreme": "^22.1.3",
     "devextreme-react": "^22.1.3",
-    "electron-log": "^4.4.7",
+    "electron-log": "^4.4.8",
     "electron-squirrel-startup": "^1.0.0",
     "eventsource": "^1.0.7",
     "fetch-cookie": "^0.11.0",
     "formdata-node": "^4.3.3",
-    "moment": "^2.29.3",
+    "moment": "^2.29.4",
     "node-fetch": "^3.2.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

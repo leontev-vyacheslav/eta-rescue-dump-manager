@@ -1,7 +1,7 @@
 import notify from 'devextreme/ui/notify';
 import { MutableRefObject, useMemo } from 'react';
 import { useSharedContext } from '../../contexts/shared-context';
-import { CollapseIcon, DownloadIcon, ExpandIcon, ExtensionVertIcon, HealthStatusIcon } from '../../components/icons';
+import { CollapseIcon, DownloadIcon, ExpandIcon, ExtensionVertIcon } from '../../components/icons';
 import { List } from 'devextreme-react/ui/list';
 import { RescueDumpListGroupModel } from '../../models/rescue-dump-list-group-model';
 import { confirm } from 'devextreme/ui/dialog';
@@ -63,13 +63,6 @@ export const useRescueDumpListTitleMenuItems = ( { listRef, rescueDumpGroupedLis
               }
             },
           },
-          {
-            text: 'Health status info...',
-            icon: () => <HealthStatusIcon size={24} />,
-            onClick: async () => {
-              //
-            }
-          }
         ],
       },
     ];
