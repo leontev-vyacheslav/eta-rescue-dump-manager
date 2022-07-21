@@ -7,5 +7,5 @@ export const useIsAuthRescueDumpServer = () => {
   return useCallback((serverName: string) => {
     const rescueDumpServer = appSettings.rescueDumpServers.find(s => s.name === serverName);
     return rescueDumpServer != undefined && rescueDumpServer.authToken !== null;
-  }, [appSettings.rescueDumpServers]);
+  }, [appSettings]);
 };

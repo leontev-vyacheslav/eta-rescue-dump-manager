@@ -18,9 +18,11 @@ export { MdOutlineEdit as EditIcon } from 'react-icons/md';
 export { IoAddOutline as AddIcon } from 'react-icons/io5';
 export { MdRestore as RestoreIcon } from 'react-icons/md';
 export { IoCloudDownloadOutline as DownloadIcon } from 'react-icons/io5';
+export { IoCloudUploadOutline as UploadIcon } from 'react-icons/io5';
 export { VscTools as ToolsIcon } from 'react-icons/vsc';
 export { BsArrowsCollapse as CollapseIcon } from 'react-icons/bs';
 export { BsArrowsExpand as ExpandIcon } from 'react-icons/bs';
+export { MdOutlineHealthAndSafety as HealthStatusIcon } from 'react-icons/md';
 
 // Dialog icons
 export { FiPackage as AboutDialogIcon } from 'react-icons/fi';
@@ -36,3 +38,9 @@ export { RiUserUnfollowLine as UnauthorizedIcon } from 'react-icons/ri';
 export { IoBookmarkOutline as BookmarkIcon } from 'react-icons/io5';
 export { RiServerFill as ActiveServerIcon } from 'react-icons/ri';
 export { RiServerLine as InactiveServerIcon } from 'react-icons/ri';
+
+// DeviseReader
+
+export { IoCheckmarkCircleOutline as SuccessIcon } from 'react-icons/io5';
+export { IoHelpCircleOutline as LossIcon } from 'react-icons/io5';
+export { IoCloseCircleOutline as FailIcon } from 'react-icons/io5';

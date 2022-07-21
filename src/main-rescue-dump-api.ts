@@ -19,7 +19,9 @@ import { FormData } from 'formdata-node';
 // eslint-disable-next-line import/no-unresolved
 import { fileFromPath } from 'formdata-node/file-from-path';
 import fetch from 'node-fetch';
+
 import { FileCloudStorageFileInfo } from './app/models/file-cloud-storage-file-info';
+import { DeviceReaderHealthStatusModel } from './app/models/device-reader-health-status-model';
 
 type SimpleRescueDumpAsyncFunc = (rescueDumpServer: RescueDumpServerModel) => Promise<boolean>;
 
@@ -305,4 +307,22 @@ export const traceMessagingAsync = async (rescueDumpServer: RescueDumpServerMode
     method: 'GET',
     params: traceMessaging
   });
+};
+
+export const getDeviceReadersHealthStatusAsync = async (rescueDumpServer: RescueDumpServerModel) => {
+  try {
+    const response = await axios.request({
+      url: `${rescueDumpServer.baseUrl}/api/health-statuses/device-readers`,
+      method: 'GET',
+    });
+
+    return response.data as DeviceReaderHealthStatusModel[];
+  } catch (error) {
+    let result = null;
+    await updateAuthTokenAsync(error, rescueDumpServer, async (updatedRescueDumpServer: RescueDumpServerModel) => {
+      result = await getDeviceReadersHealthStatusAsync(updatedRescueDumpServer);
+    });
+
+    return result;
+  }
 };

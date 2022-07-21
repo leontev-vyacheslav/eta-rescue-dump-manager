@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSharedContext } from '../../contexts/shared-context';
 import { useIsAuthRescueDumpServer } from '../../hooks/use-is-auth-rescue-dump-server';
 import { RescueDumpListGroupProps } from '../../models/rescue-dump-list-group-props';
-import { ExtensionIcon, LoginIcon, LogoutIcon, PackageIcon } from '../../components/icons';
+import { ExtensionIcon, HealthStatusIcon, LoginIcon, LogoutIcon, PackageIcon, UploadIcon } from '../../components/icons';
 import { LoginDialogProps } from '../../models/login-dialog-props';
 import { useRescueDumpListPageContext } from './rescue-dump-list-page-context';
 import { TraceMessageCommandModel, TraceMessageCommandName } from '../../models/trace-message-command-model';
@@ -39,8 +39,8 @@ export const useRescueDumpListGroupRowMenuItems = ({ group }: RescueDumpListGrou
       visible: isAuth(serverName)
     },
     {
-      text: 'Upload...',
-      icon: () => <PackageIcon size={24} />,
+      text: 'Upload dump...',
+      icon: () => <UploadIcon size={24} />,
       onClick: async () => {
         try {
           setIsShowLoadPanel(true);
@@ -63,6 +63,18 @@ export const useRescueDumpListGroupRowMenuItems = ({ group }: RescueDumpListGrou
         }
       },
       visible: isAuth(serverName)
+    },
+    {
+      text: 'Get health status...',
+      icon: () => <HealthStatusIcon size={24} />,
+      onClick: () => {
+        navigate('/device-readers-health-status', {
+          state: {
+            serverName: serverName,
+          }
+        });
+      },
+      // visible: isAuth(serverName)
     },
     {
       text: 'Login...',

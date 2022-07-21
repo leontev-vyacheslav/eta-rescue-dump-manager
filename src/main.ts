@@ -1,5 +1,6 @@
 import * as path from 'path';
 import * as fs from 'fs/promises';
+import logger from 'electron-log';
 import { HubConnectionBuilder, HubConnection } from '../patches/@microsoft/signalr';
 import { app, BrowserWindow, dialog, ipcMain } from 'electron';
 import { MainBrowserWindow } from './main-browser-window';
@@ -15,14 +16,14 @@ import {
   sendRequestSecurityPass,
   traceMessagingAsync,
   restoreDatabaseAsync,
-  uploadRescueDumpAsync
+  uploadRescueDumpAsync,
+  getDeviceReadersHealthStatusAsync
 } from './main-rescue-dump-api';
 import { loadAppSettingsAsync, storeAppSettingsAsync } from './main-storage-api';
 import { LoginModel } from './app/models/login-model';
 import { RescueDumpServerModel } from './app/models/rescue-dump-server-model';
 import { TraceMessagingModel } from './app/models/trace-messaging-model';
 import { AppSettingsModel } from './app/models/app-settings-model';
-import logger from 'electron-log';
 import { SecurityPassRequestModel } from './app/models/security-pass-request-model';
 import { RestorationRequestModel } from './app/models/restoration-request-model';
 import { RescueDumpEntryModel } from './app/models/rescue-dump-entry-model';
@@ -254,6 +255,12 @@ ipcMain.handle('app:traceMessagingAsync', async (_, args) => {
 
   return await traceMessagingAsync(rescueDumpServer, traceMessaging);
 });
+
+ipcMain.handle('app:getDeviceReadersHealthStatusAsync', async (_, args) => {
+  const { rescueDumpServer }: { rescueDumpServer: RescueDumpServerModel } = args;
+
+   return await getDeviceReadersHealthStatusAsync(rescueDumpServer);
+ });
 
 ipcMain.handle('app:loadAppSettingsAsync', async () => {
   return await loadAppSettingsAsync();

@@ -1,5 +1,5 @@
 import '../main-menu.css';
-import { Menu } from 'devextreme-react/menu';
+import { Menu } from 'devextreme-react/ui/menu';
 import { MenuItem } from '../menu-item/menu-item';
 import { MenuItemModel } from '../../../models/menu-item-model';
 import { Item } from 'devextreme/ui/menu';
