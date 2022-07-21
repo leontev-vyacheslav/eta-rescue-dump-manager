@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { SaveIcon , ExtensionVertIcon } from '../../components/icons';
-import { TraceMessageCommandModel } from '../../models/trace-message-command-model';
+import { TraceMessageRouterStateModel } from '../../models/trace-message-router-state-model';
 import { useSharedContext } from '../../contexts/shared-context';
 import moment from 'moment';
 import notify from 'devextreme/ui/notify';
@@ -20,8 +20,8 @@ export const useTraceMessageViewerTitleMenuItems = () => {
               text: 'Save',
               icon: () => <SaveIcon size={24} />,
               onClick: async () => {
-                const command = state as TraceMessageCommandModel;
-                const selectedRescueDumpServer = appSettings.rescueDumpServers.find((s) => s.name == command.serverName);
+                const traceMessageRouterState = state as TraceMessageRouterStateModel;
+                const selectedRescueDumpServer = appSettings.rescueDumpServers.find((s) => s.name == traceMessageRouterState.serverName);
                 const textArea = document.querySelector('#trace-message-viewer textarea') as HTMLTextAreaElement;
                 const text = textArea.value;
                 if(text) {

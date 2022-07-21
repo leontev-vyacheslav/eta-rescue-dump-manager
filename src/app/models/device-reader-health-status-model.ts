@@ -1,6 +1,10 @@
-import { Described, Entity } from './entity';
+import { Entity } from './entity';
+import { Described } from './described';
+
 
 export interface DeviceReaderHealthStatusModel extends Entity<number>, Described {
+  measurementDeviceCounter: number;
+
   success: number;
 
   loss: number;
@@ -13,9 +17,3 @@ export interface DeviceReaderHealthStatusModel extends Entity<number>, Described
 
   failPercent: number;
 }
-
-export type DeviceReaderHealthStatusGroupModel = {
-  index: number;
-  key: string;
-  items: DeviceReaderHealthStatusModel[];
-};

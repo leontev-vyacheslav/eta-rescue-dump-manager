@@ -10,8 +10,8 @@ import { useIsAuthRescueDumpServer } from '../../hooks/use-is-auth-rescue-dump-s
 import { SecurityPassRequestModel } from '../../models/security-pass-request-model';
 import { TargetDialogProps } from '../../models/target-dialog-props';
 import { useRescueDumpListPageContext } from './rescue-dump-list-page-context';
-import { RestorationTraceMessageCommandModel } from '../../models/restoration-trace-message-command-model';
-import { TraceMessageCommandName } from '../../models/trace-message-command-model';
+import { RestorationTraceMessageRouterStateModel } from '../../models/restoration-trace-message-router-state-model';
+import { TraceMessageCommandName } from '../../models/trace-message-router-state-model';
 
 export const useRescueDumpListRowMenuItems = ({ item }: RescueDumpListItemProps) => {
   const { setRefreshToken, activeRescueDumpServer, appSettings } = useSharedContext();
@@ -40,7 +40,7 @@ export const useRescueDumpListRowMenuItems = ({ item }: RescueDumpListItemProps)
             serverName: serverName,
             fileId: selectedRescueDumpListItem.fileId,
             securityPass: args.securityPass
-          } as RestorationTraceMessageCommandModel
+          } as RestorationTraceMessageRouterStateModel
         });
       }
 

@@ -7,7 +7,7 @@ import { RescueDumpListGroupProps } from '../../models/rescue-dump-list-group-pr
 import { ExtensionIcon, HealthStatusIcon, LoginIcon, LogoutIcon, PackageIcon, UploadIcon } from '../../components/icons';
 import { LoginDialogProps } from '../../models/login-dialog-props';
 import { useRescueDumpListPageContext } from './rescue-dump-list-page-context';
-import { TraceMessageCommandModel, TraceMessageCommandName } from '../../models/trace-message-command-model';
+import { TraceMessageRouterStateModel, TraceMessageCommandName } from '../../models/trace-message-router-state-model';
 import { confirm } from 'devextreme/ui/dialog';
 
 const app = window.externalBridge.app;
@@ -32,7 +32,7 @@ export const useRescueDumpListGroupRowMenuItems = ({ group }: RescueDumpListGrou
             state: {
               name: TraceMessageCommandName.createDump,
               serverName: serverName
-            } as TraceMessageCommandModel
+            } as TraceMessageRouterStateModel
           });
         }
       },

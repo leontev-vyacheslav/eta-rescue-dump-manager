@@ -1,4 +1,5 @@
 export type SecurityPassRequestModel = {
-  userName: string,
-  fileId: string
+  userName: string;
+
+  fileId: string;
 }

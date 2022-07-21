@@ -1,4 +1,5 @@
 export type RestorationRequestModel = {
-  fileId: string,
-  securityPass: string
+  fileId: string;
+
+  securityPass: string;
 }

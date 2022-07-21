@@ -3,8 +3,8 @@ import { useEffect, useRef } from 'react';
 import { useSharedContext } from '../../contexts/shared-context';
 import { useLocation } from 'react-router-dom';
 import { RescueDumpServerModel } from '../../models/rescue-dump-server-model';
-import { RestorationTraceMessageCommandModel } from '../../models/restoration-trace-message-command-model';
-import { TraceMessageCommandModel, TraceMessageCommandName } from '../../models/trace-message-command-model';
+import { RestorationTraceMessageRouterStateModel } from '../../models/restoration-trace-message-router-state-model';
+import { TraceMessageRouterStateModel, TraceMessageCommandName } from '../../models/trace-message-router-state-model';
 import { PageToolbar } from '../../components/page-toolbar/page-toolbar';
 import { useTraceMessageViewerTitleMenuItems } from './use-trace-message-viewer-title-menu-items';
 
@@ -20,13 +20,13 @@ export const TraceMessageViewer = () => {
   useEffect(() => {
     (async () => {
       let selectedRescueDumpServer: RescueDumpServerModel = null;
-      const command = state as TraceMessageCommandModel;
+      const traceMessageRouterState = state as TraceMessageRouterStateModel;
 
-      if(command) {
-        selectedRescueDumpServer = appSettings.rescueDumpServers.find((s) => s.name == command.serverName);
+      if(traceMessageRouterState) {
+        selectedRescueDumpServer = appSettings.rescueDumpServers.find((s) => s.name == traceMessageRouterState.serverName);
       }
 
-      if(!command || !selectedRescueDumpServer) {
+      if(!traceMessageRouterState || !selectedRescueDumpServer) {
         textAreaRef.current.instance.option('value', 'An error was happened! The command has been not passed!');
         setIsShowLoadPanel(false);
 
@@ -46,10 +46,10 @@ export const TraceMessageViewer = () => {
         });
         await window.externalBridge.signalR.startAsync();
 
-        if (command.name === TraceMessageCommandName.createDump) {
+        if (traceMessageRouterState.name === TraceMessageCommandName.createDump) {
           await window.externalBridge.createRescueDumpAsync(selectedRescueDumpServer);
-        } else if (command.name === TraceMessageCommandName.restoration) {
-          const restorationCommand = state as RestorationTraceMessageCommandModel;
+        } else if (traceMessageRouterState.name === TraceMessageCommandName.restoration) {
+          const restorationCommand = state as RestorationTraceMessageRouterStateModel;
           if (restorationCommand.securityPass) {
             await window.externalBridge.restoreDatabaseAsync(selectedRescueDumpServer, {
               fileId: restorationCommand.fileId,

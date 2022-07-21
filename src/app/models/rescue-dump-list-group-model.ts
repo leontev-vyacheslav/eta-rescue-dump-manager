@@ -1,7 +1,4 @@
+import { ListBaseGroupModel } from './list-base-group-model';
 import { RescueDumpListItemModel } from './rescue-dump-list-item-model';
 
-export type RescueDumpListGroupModel = {
-  index: number;
-  key: string;
-  items: RescueDumpListItemModel[];
-};
+export type RescueDumpListGroupModel = ListBaseGroupModel<RescueDumpListItemModel>;

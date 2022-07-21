@@ -40,7 +40,7 @@ export { RiServerFill as ActiveServerIcon } from 'react-icons/ri';
 export { RiServerLine as InactiveServerIcon } from 'react-icons/ri';
 
 // DeviseReader
-
+export { TbSum as TotalIcon } from 'react-icons/tb';
 export { IoCheckmarkCircleOutline as SuccessIcon } from 'react-icons/io5';
 export { IoHelpCircleOutline as LossIcon } from 'react-icons/io5';
 export { IoCloseCircleOutline as FailIcon } from 'react-icons/io5';

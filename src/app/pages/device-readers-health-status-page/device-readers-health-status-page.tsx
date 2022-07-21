@@ -1,12 +1,13 @@
 import { List } from 'devextreme-react/ui/list';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { DeviceReaderHealthStatusGroupModel, DeviceReaderHealthStatusModel } from '../../models/device-reader-health-status-model';
+import { DeviceReaderHealthStatusGroupModel } from '../../models/device-reader-health-status-group-model';
+import { DeviceReaderHealthStatusModel } from '../../models/device-reader-health-status-model';
 import { PageToolbar } from '../../components/page-toolbar/page-toolbar';
 import { useSharedContext } from '../../contexts/shared-context';
 import { useLocation } from 'react-router-dom';
-import { RouterPageBaseCommandModel } from '../../models/router-page-command';
+import { RouterStateBaseModel } from '../../models/router-state-base-model';
 import { useIsAuthRescueDumpServer } from '../../hooks/use-is-auth-rescue-dump-server';
-import { ActiveServerIcon, SuccessIcon, LossIcon, FailIcon, AuthorizedIcon, UnauthorizedIcon } from '../../components/icons';
+import { ActiveServerIcon, SuccessIcon, LossIcon, FailIcon, AuthorizedIcon, UnauthorizedIcon, TotalIcon } from '../../components/icons';
 import './device-readers-health-status-list-item.css';
 
 
@@ -16,11 +17,12 @@ export const DeviceReadersHealthStatusPage = () => {
   const [deviceReadersHealthStatusGroupedList, setDeviceReadersHealthStatusGroupList] = useState<DeviceReaderHealthStatusGroupModel[]>([]);
   const { state } = useLocation();
   const isAuth = useIsAuthRescueDumpServer();
+  const routerPageBaseCommand = state as RouterStateBaseModel;
 
   useEffect(() => {
-    if (state && (state as RouterPageBaseCommandModel).serverName) {
+    if (routerPageBaseCommand) {
       (async () => {
-        const selectedRescueDumpServer = appSettings.rescueDumpServers.find((s) => s.name == (state as any).serverName);
+        const selectedRescueDumpServer = appSettings.rescueDumpServers.find((s) => s.name == routerPageBaseCommand.serverName);
         const deviceReadersHealthStatuses = await window.externalBridge.getDeviceReadersHealthStatusAsync(selectedRescueDumpServer);
 
         setDeviceReadersHealthStatusGroupList((previous) => {
@@ -28,14 +30,14 @@ export const DeviceReadersHealthStatusPage = () => {
             ...previous,
             {
               index: 1,
-              key: (state as RouterPageBaseCommandModel).serverName,
+              key: routerPageBaseCommand.serverName,
               items: deviceReadersHealthStatuses,
             },
           ];
         });
       })();
     }
-  }, [appSettings, state]);
+  }, [appSettings, routerPageBaseCommand]);
 
   const getDeviceReaderStatusColor =useCallback( (item: DeviceReaderHealthStatusModel) => {
 
@@ -61,11 +63,28 @@ export const DeviceReadersHealthStatusPage = () => {
         selectionMode={'single'}
         grouped
         groupRender={(group: DeviceReaderHealthStatusGroupModel) => {
+          const totalDevices = group.items.reduce((a, b) => a + b.measurementDeviceCounter, 0);
+          const totalSuccess = group.items.reduce((a, b) => a + b.success, 0);
+          const totalLoss = group.items.reduce((a, b) => a + b.loss, 0);
+          const totalFail = group.items.reduce((a, b) => a + b.fail, 0);
+
             return (
               <div style={{ display: 'flex', alignItems: 'center' }} >
-                <div style={{ display: 'flex', alignItems: 'center', flex: 1, cursor: 'pointer' }}>
+                <div style={{ display: 'flex', alignItems: 'center', flex: 1, cursor: 'pointer', gap: 10 }}>
                 {isAuth(group.key) ? <AuthorizedIcon size={32} /> : <UnauthorizedIcon size={32} />}
-                  <span style={{ marginLeft: 10 }}>Server name: {group.key}</span>
+                  <span>{group.key}</span>
+                  <div style={{ marginLeft: 'auto', marginRight: 25 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', flex: 1, cursor: 'pointer', gap: 10,  color: 'gray' }}>
+                      <SuccessIcon size={20} />
+                      <span>{totalSuccess}</span>
+                      <LossIcon size={20} />
+                      <span>{totalLoss}</span>
+                      <FailIcon size={20} />
+                      <span>{totalFail}</span>
+                      <TotalIcon size={20} />
+                      <span>{totalDevices}</span>
+                    </div>
+                  </div>
                 </div>
                 </div>
             );
@@ -77,7 +96,7 @@ export const DeviceReadersHealthStatusPage = () => {
                 <>
                   <ActiveServerIcon size={20} color={getDeviceReaderStatusColor(item)}/>
                   <div>Device reader:</div>
-                  <div>{item.description}</div>
+                  <div>{item.description} ({item.measurementDeviceCounter})</div>
                 </>
                 <>
                   <SuccessIcon size={20} />
