@@ -34,7 +34,7 @@ export const RescueDumpListGroup = ({ group, component }: RescueDumpListGroupPro
         <div style={{ marginLeft: 'auto', marginRight: 25 }}>
           <div style={{ display: 'flex', alignItems: 'center', flex: 1, cursor: 'pointer', gap: 10, color: 'gray' }}>
             <TotalIcon size={20} />
-            <span>{group.items.length}</span>
+            <span style={{ marginTop: 3 }}>{group.items.length}</span>
           </div>
         </div>
       </div>

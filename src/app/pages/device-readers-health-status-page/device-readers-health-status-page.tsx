@@ -1,3 +1,4 @@
+import './device-readers-health-status-list-item.css';
 import { List } from 'devextreme-react/ui/list';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { DeviceReaderHealthStatusGroupModel } from '../../models/device-reader-health-status-group-model';
@@ -8,8 +9,6 @@ import { useLocation } from 'react-router-dom';
 import { RouterStateBaseModel } from '../../models/router-state-base-model';
 import { useIsAuthRescueDumpServer } from '../../hooks/use-is-auth-rescue-dump-server';
 import { ActiveServerIcon, SuccessIcon, LossIcon, FailIcon, AuthorizedIcon, UnauthorizedIcon, TotalIcon } from '../../components/icons';
-import './device-readers-health-status-list-item.css';
-
 
 export const DeviceReadersHealthStatusPage = () => {
   const listRef = useRef<List>(null);
@@ -24,17 +23,18 @@ export const DeviceReadersHealthStatusPage = () => {
       (async () => {
         const selectedRescueDumpServer = appSettings.rescueDumpServers.find((s) => s.name == routerPageBaseCommand.serverName);
         const deviceReadersHealthStatuses = await window.externalBridge.getDeviceReadersHealthStatusAsync(selectedRescueDumpServer);
-
-        setDeviceReadersHealthStatusGroupList((previous) => {
-          return [
-            ...previous,
-            {
-              index: 1,
-              key: routerPageBaseCommand.serverName,
-              items: deviceReadersHealthStatuses,
-            },
-          ];
-        });
+        if (deviceReadersHealthStatuses) {
+          setDeviceReadersHealthStatusGroupList((previous) => {
+            return [
+              ...previous,
+              {
+                index: 1,
+                key: routerPageBaseCommand.serverName,
+                items: deviceReadersHealthStatuses,
+              },
+            ];
+          });
+        }
       })();
     }
   }, [appSettings, routerPageBaseCommand]);
@@ -53,7 +53,7 @@ export const DeviceReadersHealthStatusPage = () => {
   return (
     <>
       <PageToolbar title={'Device readers health status list'} menuItems={null} />
-      {deviceReadersHealthStatusGroupedList ? (
+      {deviceReadersHealthStatusGroupedList.length > 0 ? (
         <List
         id='rescue-dump-list'
         ref={listRef}
@@ -63,10 +63,10 @@ export const DeviceReadersHealthStatusPage = () => {
         selectionMode={'single'}
         grouped
         groupRender={(group: DeviceReaderHealthStatusGroupModel) => {
-          const totalDevices = group.items.reduce((a, b) => a + b.measurementDeviceCounter, 0);
-          const totalSuccess = group.items.reduce((a, b) => a + b.success, 0);
-          const totalLoss = group.items.reduce((a, b) => a + b.loss, 0);
-          const totalFail = group.items.reduce((a, b) => a + b.fail, 0);
+          const totalDevices =  group.items ? group.items.reduce((a, b) => a + b.measurementDeviceCounter, 0) : 0;
+          const totalSuccess = group.items ? group.items.reduce((a, b) => a + b.success, 0) : 0;
+          const totalLoss = group.items ? group.items.reduce((a, b) => a + b.loss, 0) : 0;
+          const totalFail = group.items ? group.items.reduce((a, b) => a + b.fail, 0) : 0;
 
             return (
               <div style={{ display: 'flex', alignItems: 'center' }} >
@@ -76,13 +76,13 @@ export const DeviceReadersHealthStatusPage = () => {
                   <div style={{ marginLeft: 'auto', marginRight: 25 }}>
                     <div style={{ display: 'flex', alignItems: 'center', flex: 1, cursor: 'pointer', gap: 10,  color: 'gray' }}>
                       <SuccessIcon size={20} />
-                      <span>{totalSuccess}</span>
+                      <span style={{ marginTop: 3 }}>{totalSuccess}</span>
                       <LossIcon size={20} />
-                      <span>{totalLoss}</span>
+                      <span style={{ marginTop: 3 }}>{totalLoss}</span>
                       <FailIcon size={20} />
-                      <span>{totalFail}</span>
+                      <span style={{ marginTop: 3 }}>{totalFail}</span>
                       <TotalIcon size={20} />
-                      <span>{totalDevices}</span>
+                      <span style={{ marginTop: 3 }}>{totalDevices}</span>
                     </div>
                   </div>
                 </div>
