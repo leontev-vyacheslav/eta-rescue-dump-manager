@@ -4,6 +4,7 @@ import { DialogConstants } from '../../../constants/dialogs';
 import { AboutDialogIcon } from '../../icons';
 import { useCommonDialogsContext } from '../../../contexts/common-dialogs-context';
 import { DialogProps } from '../../../models/dialog-props';
+import { appConstants } from '../../../constants/app-constants';
 
 export const AboutDialogContent = () => {
   const { showDialog } = useCommonDialogsContext();
@@ -13,7 +14,7 @@ export const AboutDialogContent = () => {
       <div className='about-dialog-content__info'>
         <AboutDialogIcon size={48} />
         <div className='about-dialog-content__info__text'>
-          <div>ETA rescue dump manager</div>
+          <div>ETA rescue dump manager v. {appConstants.version}</div>
           <div>Engineering Center Energytechaudit©</div>
           <div>All rights reserved.</div>
         </div>

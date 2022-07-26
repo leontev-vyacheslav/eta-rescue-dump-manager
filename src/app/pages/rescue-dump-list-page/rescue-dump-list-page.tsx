@@ -15,7 +15,7 @@ const RescueDumpListPageInternal = () => {
   const listRef = useRef<List>(null);
   const { getRescueDumpGroupedListAsync } = useExternalBridgeContext();
   const { setSelectedRescueDumpListItem } = useRescueDumpListPageContext();
-  const { activeRescueDumpServer, refreshToken, appSettings, collapsedRescueDumpListGroupKeys } = useSharedContext();
+  const { activeRescueDumpServer,  appSettings, collapsedRescueDumpListGroupKeys } = useSharedContext();
 
   const [rescueDumpGroupedList, setRescueDumpGroupedList] = useState<RescueDumpListGroupModel[]>();
   const menuItems = useRescueDumpListTitleMenuItems({ listRef, rescueDumpGroupedList });
@@ -25,7 +25,7 @@ const RescueDumpListPageInternal = () => {
       if(!appSettings) {
         return;
       }
-
+    
       const displayedServers = appSettings.rescueDumpServers?.filter(s => s.displayed === true) ?? [];
       let groups = await getRescueDumpGroupedListAsync(activeRescueDumpServer);
       groups = groups
@@ -45,7 +45,7 @@ const RescueDumpListPageInternal = () => {
         });
       setRescueDumpGroupedList(groups);
     })();
-  }, [activeRescueDumpServer, appSettings, getRescueDumpGroupedListAsync, refreshToken]);
+  }, [activeRescueDumpServer, appSettings, getRescueDumpGroupedListAsync]);
 
   return rescueDumpGroupedList ? (
     <>

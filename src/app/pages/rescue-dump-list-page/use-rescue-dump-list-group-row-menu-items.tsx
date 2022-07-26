@@ -9,6 +9,8 @@ import { LoginDialogProps } from '../../models/login-dialog-props';
 import { useRescueDumpListPageContext } from './rescue-dump-list-page-context';
 import { TraceMessageRouterStateModel, TraceMessageCommandName } from '../../models/trace-message-router-state-model';
 import { confirm } from 'devextreme/ui/dialog';
+import { DeviceReaderHealthStatusRouterStateModel } from '../../models/device-reader-health-status-router-state-model';
+import { DeviceReaderHealthStatusPageModes } from '../../models/device-reader-health-status-page-modes';
 
 const app = window.externalBridge.app;
 
@@ -65,13 +67,14 @@ export const useRescueDumpListGroupRowMenuItems = ({ group }: RescueDumpListGrou
       visible: isAuth(serverName)
     },
     {
-      text: 'Get health status...',
+      text: 'Health check...',
       icon: () => <HealthStatusIcon size={24} />,
       onClick: () => {
         navigate('/device-readers-health-status', {
           state: {
             serverName: serverName,
-          }
+            mode: DeviceReaderHealthStatusPageModes.single
+          } as DeviceReaderHealthStatusRouterStateModel
         });
       },
       // visible: isAuth(serverName)

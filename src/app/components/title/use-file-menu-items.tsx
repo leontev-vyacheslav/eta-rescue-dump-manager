@@ -47,7 +47,7 @@ export const useFileMenuItems = () => {
             window.crypto.getRandomValues(new Uint8Array(9)).join('')
           );
         },
-        visible: location.pathname === '/'
+        visible: location.pathname === '/' || location.pathname === '/device-readers-health-status'
       },
       {
         text: 'Settings...',

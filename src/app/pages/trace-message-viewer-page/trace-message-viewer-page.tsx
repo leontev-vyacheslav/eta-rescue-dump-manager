@@ -8,7 +8,6 @@ import { TraceMessageRouterStateModel, TraceMessageCommandName } from '../../mod
 import { PageToolbar } from '../../components/page-toolbar/page-toolbar';
 import { useTraceMessageViewerTitleMenuItems } from './use-trace-message-viewer-title-menu-items';
 
-
 const signalR = window.externalBridge.signalR;
 
 export const TraceMessageViewer = () => {
@@ -47,7 +46,7 @@ export const TraceMessageViewer = () => {
         await window.externalBridge.signalR.startAsync();
 
         if (traceMessageRouterState.name === TraceMessageCommandName.createDump) {
-          await window.externalBridge.createRescueDumpAsync(selectedRescueDumpServer);
+          await window.externalBridge.data.createRescueDumpAsync(selectedRescueDumpServer);
         } else if (traceMessageRouterState.name === TraceMessageCommandName.restoration) {
           const restorationCommand = state as RestorationTraceMessageRouterStateModel;
           if (restorationCommand.securityPass) {

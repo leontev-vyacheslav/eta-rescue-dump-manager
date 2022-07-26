@@ -8,7 +8,5 @@ export type ExternalBridgeModel = ExternalBridgeBaseModel & {
 
   removeRescueDumpAsync: (rescueDumpServer: RescueDumpServerModel, fileId: string) => Promise<boolean>;
 
-  createRescueDumpAsync: (rescueDumpServer: RescueDumpServerModel) => Promise<boolean>;
-  
   sendRequestSecurityPass: (rescueDumpServer: RescueDumpServerModel, securityPassRequest: SecurityPassRequestModel) => Promise<boolean>;
 }

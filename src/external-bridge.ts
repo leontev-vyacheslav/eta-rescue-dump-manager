@@ -69,6 +69,12 @@ contextBridge.exposeInMainWorld('externalBridge', {
     }
   },
 
+  data: {
+    createRescueDumpAsync: async (rescueDumpServer: RescueDumpServerModel) => {
+      return await ipcRenderer.invoke('data:createRescueDumpAsync', { rescueDumpServer });
+    },
+  },
+
   restoreDatabaseAsync : async (rescueDumpServer: RescueDumpServerModel, restorationRequest: RestorationRequestModel) => {
     return await ipcRenderer.invoke('data:restoreDatabaseAsync', { rescueDumpServer: rescueDumpServer, restorationRequest: restorationRequest });
   },
@@ -111,10 +117,6 @@ contextBridge.exposeInMainWorld('externalBridge', {
 
   removeRescueDumpAsync: async (rescueDumpServer: RescueDumpServerModel, fileId: string) => {
     return await ipcRenderer.invoke('data:removeRescueDumpAsync', { rescueDumpServer, fileId });
-  },
-
-  createRescueDumpAsync: async (rescueDumpServer: RescueDumpServerModel) => {
-    return await ipcRenderer.invoke('data:createRescueDumpAsync', { rescueDumpServer });
   },
 
   sendRequestSecurityPass: async (rescueDumpServer: RescueDumpServerModel, securityPassRequest: SecurityPassRequestModel) => {

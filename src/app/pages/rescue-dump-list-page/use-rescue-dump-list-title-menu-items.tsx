@@ -1,10 +1,13 @@
 import notify from 'devextreme/ui/notify';
 import { MutableRefObject, useMemo } from 'react';
 import { useSharedContext } from '../../contexts/shared-context';
-import { CollapseIcon, DownloadIcon, ExpandIcon, ExtensionVertIcon } from '../../components/icons';
+import { CollapseIcon, DownloadIcon, ExpandIcon, ExtensionVertIcon, HealthStatusIcon } from '../../components/icons';
 import { List } from 'devextreme-react/ui/list';
 import { RescueDumpListGroupModel } from '../../models/rescue-dump-list-group-model';
 import { confirm } from 'devextreme/ui/dialog';
+import { DeviceReaderHealthStatusPageModes } from '../../models/device-reader-health-status-page-modes';
+import { DeviceReaderHealthStatusRouterStateModel } from '../../models/device-reader-health-status-router-state-model';
+import { useNavigate } from 'react-router-dom';
 
 type RescueDumpListTitleMenuItemsProps = {
   listRef: MutableRefObject<List>,
@@ -13,6 +16,7 @@ type RescueDumpListTitleMenuItemsProps = {
 
 export const useRescueDumpListTitleMenuItems = ( { listRef, rescueDumpGroupedList }: RescueDumpListTitleMenuItemsProps) => {
   const { activeRescueDumpServer, collapsedRescueDumpListGroupKeys } = useSharedContext();
+  const navigate = useNavigate();
 
   return useMemo(() => {
     return [
@@ -63,8 +67,20 @@ export const useRescueDumpListTitleMenuItems = ( { listRef, rescueDumpGroupedLis
               }
             },
           },
+          {
+              text: 'Health check...',
+              icon: () => <HealthStatusIcon size={24} />,
+              onClick: () => {
+                navigate('/device-readers-health-status', {
+                  state: {
+                    serverName: null,
+                    mode: DeviceReaderHealthStatusPageModes.multiple
+                  } as DeviceReaderHealthStatusRouterStateModel
+                });
+              }
+            }
         ],
       },
     ];
-  }, [activeRescueDumpServer, collapsedRescueDumpListGroupKeys, listRef, rescueDumpGroupedList]);
+  }, [activeRescueDumpServer, collapsedRescueDumpListGroupKeys, listRef, navigate, rescueDumpGroupedList]);
 };

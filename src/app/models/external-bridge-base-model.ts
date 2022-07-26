@@ -38,6 +38,10 @@ type SignalR = {
   unsubscribe: ()=> Promise<void>;
 };
 
+type Data = {
+  createRescueDumpAsync: (rescueDumpServer: RescueDumpServerModel) => Promise<boolean>;
+}
+
 export type ExternalBridgeBaseModel = {
   logger: Logger;
 
@@ -45,9 +49,9 @@ export type ExternalBridgeBaseModel = {
 
   app: App;
 
-  removeRescueDumpGroupedListAsync: () => Promise<void>;
+  data: Data;
 
-  createRescueDumpAsync: (rescueDumpServer: RescueDumpServerModel) => Promise<boolean>;
+  removeRescueDumpGroupedListAsync: () => Promise<void>;
 
   getRescueDumpGroupedListAsync: (rescueDumpServer: RescueDumpServerModel) => Promise<RescueDumpListGroupModel[]>;
 
