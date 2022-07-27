@@ -1,10 +1,10 @@
-import { DeviceReaderHealthStatusModel } from '../../models/device-reader-health-status-model';
+import { DeviceReaderHealthCheckModel } from '../../models/device-reader-health-check-model';
 import { ActiveServerIcon, FailIcon, LossIcon, SuccessIcon } from '../../components/icons';
 import { useCallback } from 'react';
-import { DeviceReadersHealthStatusListItemProps } from '../../models/device-readers-health-status-list-item-props';
+import { DeviceReadersHealthCheckListItemProps } from '../../models/device-readers-health-check-list-item-props';
 
-export const DeviceReadersHealthStatusListItem = ({ item }: DeviceReadersHealthStatusListItemProps) => {
-  const getDeviceReaderStatusColor = useCallback((item: DeviceReaderHealthStatusModel) => {
+export const DeviceReadersHealthCheckListItem = ({ item }: DeviceReadersHealthCheckListItemProps) => {
+  const getDeviceReaderStatusColor = useCallback((item: DeviceReaderHealthCheckModel) => {
     return item.measurementDeviceCounter > 10 ?
       (
         item.successPercent > 50
@@ -19,8 +19,8 @@ export const DeviceReadersHealthStatusListItem = ({ item }: DeviceReadersHealthS
   }, []);
 
   return (
-    <div className={'device-readers-health-status-list-item'}>
-      <div className={'device-readers-health-status-list-item__content'}>
+    <div className={'device-readers-health-check-list-item'}>
+      <div className={'device-readers-health-check-list-item__content'}>
         <>
           <ActiveServerIcon size={20} color={getDeviceReaderStatusColor(item)} />
           <div>Device reader:</div>
@@ -50,7 +50,7 @@ export const DeviceReadersHealthStatusListItem = ({ item }: DeviceReadersHealthS
           </div>
         </>
       </div>
-      <div className={'device-readers-health-status-list-item__button'}></div>
+      <div className={'device-readers-health-check-list-item__button'}></div>
     </div>
   );
 };

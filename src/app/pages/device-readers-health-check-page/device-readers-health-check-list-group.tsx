@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { AuthorizedIcon, FailIcon, LossIcon, SuccessIcon, TotalIcon, UnauthorizedIcon } from '../../components/icons';
 import { useIsAuthRescueDumpServer } from '../../hooks/use-is-auth-rescue-dump-server';
-import { DeviceReadersHealthStatusListGroupProps } from '../../models/device-readers-health-status-list-group-props';
+import { DeviceReadersHealthCheckListGroupProps } from '../../models/device-readers-health-check-list-group-props';
 
-export const DeviceReadersHealthStatusListGroup = ({ group, component }: DeviceReadersHealthStatusListGroupProps) => {
+export const DeviceReadersHealthCheckListGroup = ({ group, component }: DeviceReadersHealthCheckListGroupProps) => {
   const isAuth = useIsAuthRescueDumpServer();
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
-  
+
   let totalDevices = 0;
   let totalSuccess = 0;
   let totalLoss = 0;

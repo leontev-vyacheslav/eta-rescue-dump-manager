@@ -2,7 +2,7 @@ import { Entity } from './entity';
 import { Described } from './described';
 
 
-export interface DeviceReaderHealthStatusModel extends Entity<number>, Described {
+export interface DeviceReaderHealthCheckModel extends Entity<number>, Described {
   measurementDeviceCounter: number;
 
   success: number;

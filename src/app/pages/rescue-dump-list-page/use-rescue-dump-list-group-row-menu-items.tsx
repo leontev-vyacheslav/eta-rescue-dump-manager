@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { useSharedContext } from '../../contexts/shared-context';
 import { useIsAuthRescueDumpServer } from '../../hooks/use-is-auth-rescue-dump-server';
 import { RescueDumpListGroupProps } from '../../models/rescue-dump-list-group-props';
-import { ExtensionIcon, HealthStatusIcon, LoginIcon, LogoutIcon, PackageIcon, UploadIcon } from '../../components/icons';
+import { ExtensionIcon, HealthCheckIcon, LoginIcon, LogoutIcon, PackageIcon, UploadIcon } from '../../components/icons';
 import { LoginDialogProps } from '../../models/login-dialog-props';
 import { useRescueDumpListPageContext } from './rescue-dump-list-page-context';
 import { TraceMessageRouterStateModel, TraceMessageCommandName } from '../../models/trace-message-router-state-model';
 import { confirm } from 'devextreme/ui/dialog';
-import { DeviceReaderHealthStatusRouterStateModel } from '../../models/device-reader-health-status-router-state-model';
-import { DeviceReaderHealthStatusPageModes } from '../../models/device-reader-health-status-page-modes';
+import { DeviceReaderHealthCheckRouterStateModel } from '../../models/device-reader-health-check-router-state-model';
+import { DeviceReaderHealthCheckPageModes } from '../../models/device-reader-health-check-page-modes';
 
 const app = window.externalBridge.app;
 
@@ -68,16 +68,16 @@ export const useRescueDumpListGroupRowMenuItems = ({ group }: RescueDumpListGrou
     },
     {
       text: 'Health check...',
-      icon: () => <HealthStatusIcon size={24} />,
+      icon: () => <HealthCheckIcon size={24} />,
       onClick: () => {
-        navigate('/device-readers-health-status', {
+        navigate('/device-readers-health-check', {
           state: {
             serverName: serverName,
-            mode: DeviceReaderHealthStatusPageModes.single
-          } as DeviceReaderHealthStatusRouterStateModel
+            mode: DeviceReaderHealthCheckPageModes.single
+          } as DeviceReaderHealthCheckRouterStateModel
         });
       },
-      // visible: isAuth(serverName)
+      visible: isAuth(serverName)
     },
     {
       text: 'Login...',

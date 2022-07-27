@@ -127,7 +127,7 @@ contextBridge.exposeInMainWorld('externalBridge', {
     return await ipcRenderer.invoke('data:getAuthTokenAsync', { rescueDumpServer: rescueDumpServer, login: login });
   },
 
-  getDeviceReadersHealthStatusAsync: async (rescueDumpServer: RescueDumpServerModel) => {
-    return await ipcRenderer.invoke('app:getDeviceReadersHealthStatusAsync', { rescueDumpServer: rescueDumpServer });
+  getDeviceReadersHealthCheckAsync: async (rescueDumpServer: RescueDumpServerModel) => {
+    return await ipcRenderer.invoke('app:getDeviceReadersHealthCheckAsync', { rescueDumpServer: rescueDumpServer });
   }
 } as ExternalBridgeModel);

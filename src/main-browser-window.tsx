@@ -17,7 +17,7 @@ export class MainBrowserWindow {
         contextIsolation: true,
         nodeIntegration: true,
         preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
-        allowRunningInsecureContent: true
+        allowRunningInsecureContent: false
       }
     });
 

@@ -22,7 +22,7 @@ export { IoCloudUploadOutline as UploadIcon } from 'react-icons/io5';
 export { VscTools as ToolsIcon } from 'react-icons/vsc';
 export { BsArrowsCollapse as CollapseIcon } from 'react-icons/bs';
 export { BsArrowsExpand as ExpandIcon } from 'react-icons/bs';
-export { MdOutlineHealthAndSafety as HealthStatusIcon } from 'react-icons/md';
+export { MdOutlineHealthAndSafety as HealthCheckIcon } from 'react-icons/md';
 
 // Dialog icons
 export { FiPackage as AboutDialogIcon } from 'react-icons/fi';

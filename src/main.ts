@@ -17,7 +17,7 @@ import {
   traceMessagingAsync,
   restoreDatabaseAsync,
   uploadRescueDumpAsync,
-  getDeviceReadersHealthStatusAsync
+  getDeviceReadersHealthCheckAsync
 } from './main-rescue-dump-api';
 import { loadAppSettingsAsync, storeAppSettingsAsync } from './main-storage-api';
 import { LoginModel } from './app/models/login-model';
@@ -256,10 +256,10 @@ ipcMain.handle('app:traceMessagingAsync', async (_, args) => {
   return await traceMessagingAsync(rescueDumpServer, traceMessaging);
 });
 
-ipcMain.handle('app:getDeviceReadersHealthStatusAsync', async (_, args) => {
+ipcMain.handle('app:getDeviceReadersHealthCheckAsync', async (_, args) => {
   const { rescueDumpServer }: { rescueDumpServer: RescueDumpServerModel } = args;
 
-   return await getDeviceReadersHealthStatusAsync(rescueDumpServer);
+   return await getDeviceReadersHealthCheckAsync(rescueDumpServer);
  });
 
 ipcMain.handle('app:loadAppSettingsAsync', async () => {

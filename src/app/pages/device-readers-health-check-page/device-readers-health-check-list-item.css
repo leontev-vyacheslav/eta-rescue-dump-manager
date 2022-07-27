@@ -1,8 +1,8 @@
-.device-readers-health-status-list-item {
+.device-readers-health-check-list-item {
   display: flex;
 }
 
-.device-readers-health-status-list-item__content {
+.device-readers-health-check-list-item__content {
   flex: 1;
   display: grid;
   grid-template-columns: 35px 100px 1fr;
@@ -10,6 +10,6 @@
   row-gap: 8px;
   font-size: 14px;
 }
-.device-readers-health-status-list-item__button {
+.device-readers-health-check-list-item__button {
   align-self: center;
 }

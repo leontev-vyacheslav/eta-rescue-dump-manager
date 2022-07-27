@@ -21,7 +21,7 @@ import { fileFromPath } from 'formdata-node/file-from-path';
 import fetch from 'node-fetch';
 
 import { FileCloudStorageFileInfo } from './app/models/file-cloud-storage-file-info';
-import { DeviceReaderHealthStatusModel } from './app/models/device-reader-health-status-model';
+import { DeviceReaderHealthCheckModel } from './app/models/device-reader-health-check-model';
 
 type SimpleRescueDumpAsyncFunc = (rescueDumpServer: RescueDumpServerModel) => Promise<boolean>;
 
@@ -309,18 +309,22 @@ export const traceMessagingAsync = async (rescueDumpServer: RescueDumpServerMode
   });
 };
 
-export const getDeviceReadersHealthStatusAsync = async (rescueDumpServer: RescueDumpServerModel) => {
+export const getDeviceReadersHealthCheckAsync = async (rescueDumpServer: RescueDumpServerModel) => {
   try {
     const response = await axios.request({
-      url: `${rescueDumpServer.baseUrl}/api/health-statuses/device-readers`,
+      url: `${rescueDumpServer.baseUrl}/api/health-checks/device-readers`,
       method: 'GET',
+      headers: {
+        Authorization: `Bearer ${rescueDumpServer.authToken.token}`,
+        Accept: 'application/json'
+      }
     });
 
-    return response.data as DeviceReaderHealthStatusModel[];
+    return response.data as DeviceReaderHealthCheckModel[];
   } catch (error) {
     let result = null;
     await updateAuthTokenAsync(error, rescueDumpServer, async (updatedRescueDumpServer: RescueDumpServerModel) => {
-      result = await getDeviceReadersHealthStatusAsync(updatedRescueDumpServer);
+      result = await getDeviceReadersHealthCheckAsync(updatedRescueDumpServer);
     });
 
     return result;
