@@ -115,7 +115,7 @@ export const uploadRescueDumpAsync = async (rescueDumpServer: RescueDumpServerMo
 };
 
 export const getRescueDumpAsync = async (rescueDumpServer: RescueDumpServerModel, fileId: string) => {
-  const rescueDumpFilePath = path.join(app.getPath('cache'), `${fileId}.zip`);
+  const rescueDumpFilePath = path.join(app.getPath('userData'), `${fileId}.zip`);
   let buffer = null;
 
   if (existsSync(rescueDumpFilePath)) {
@@ -201,7 +201,7 @@ export const getRescueDumpGroupedListAsync = async (rescueDumpServer: RescueDump
     return [] as RescueDumpListGroupModel[];
   }
 
-  const rescueDumpListFilePath = path.join(app.getPath('cache'), 'rescue-dump-list.json');
+  const rescueDumpListFilePath = path.join(app.getPath('userData'), 'rescue-dump-list.json');
   let rawData = null;
 
   if (existsSync(rescueDumpListFilePath)) {
@@ -238,7 +238,7 @@ export const getRescueDumpGroupedListAsync = async (rescueDumpServer: RescueDump
 };
 
 export const removeRescueDumpGroupedListAsync = async () => {
-  const rescueDumpListFilePath = path.join(app.getPath('cache'), 'rescue-dump-list.json');
+  const rescueDumpListFilePath = path.join(app.getPath('userData'), 'rescue-dump-list.json');
   if (existsSync(rescueDumpListFilePath)) {
     await fs.unlink(rescueDumpListFilePath);
   }
