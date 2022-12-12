@@ -1,7 +1,7 @@
 {
   "name": "rescue-dump-manager",
   "productName": "ETA rescue dump manager",
-  "version": "2022.7.26",
+  "version": "2022.7.27",
   "description": "ETA rescue dump manager",
   "main": ".webpack/main",
   "scripts": {
@@ -85,7 +85,7 @@
     "@typescript-eslint/parser": "^5.30.7",
     "@vercel/webpack-asset-relocator-loader": "1.7.0",
     "css-loader": "^6.7.1",
-    "electron": "^19.0.4",
+    "electron": "^21.3.0",
     "eslint": "^8.19.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.30.1",
@@ -100,7 +100,7 @@
   "dependencies": {
     "abort-controller": "^3.0.0",
     "adm-zip": "^0.5.9",
-    "axios": "^0.27.2",
+    "axios": "^1.1.3",
     "devextreme": "^22.1.3",
     "devextreme-react": "^22.1.3",
     "electron-log": "^4.4.8",
@@ -112,8 +112,8 @@
     "node-fetch": "^3.2.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.4.0",
-    "react-router-dom": "^6.3.0",
+    "react-icons": "^4.6.0",
+    "react-router-dom": "^6.4.3",
     "tough-cookie": "^4.0.0",
     "ws": "^8.6.0"
   }
