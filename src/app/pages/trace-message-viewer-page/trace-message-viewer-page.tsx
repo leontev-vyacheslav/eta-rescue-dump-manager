@@ -1,4 +1,5 @@
 import { TextArea } from 'devextreme-react/ui/text-area';
+import { confirm } from 'devextreme/ui/dialog';
 import { useEffect, useRef } from 'react';
 import { useSharedContext } from '../../contexts/shared-context';
 import { useLocation } from 'react-router-dom';
@@ -50,9 +51,15 @@ export const TraceMessageViewer = () => {
         } else if (traceMessageRouterState.name === TraceMessageCommandName.restoration) {
           const restorationCommand = state as RestorationTraceMessageRouterStateModel;
           if (restorationCommand.securityPass) {
+            const dialogResult = await confirm(
+              'Do you want to restore such tables as Business.Archive and Business.TimeSignature?',
+              'Confirm'
+            );
+
             await window.externalBridge.restoreDatabaseAsync(selectedRescueDumpServer, {
               fileId: restorationCommand.fileId,
               securityPass: restorationCommand.securityPass,
+              omittedEntities: dialogResult ? [] : ['Business.Archive', 'Business.TimeSignature']
             });
           }
         }

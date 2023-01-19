@@ -258,14 +258,18 @@ export const getFileFromRescueDumpAsync = async (rescueDumpServer: RescueDumpSer
 
 export const restoreDatabaseAsync = async (rescueDumpServer: RescueDumpServerModel, restorationRequest: RestorationRequestModel) => {
   try {
+    const queryString =
+      `fileId=${restorationRequest.fileId}` +
+      `&securityPass=${restorationRequest.securityPass}` +
+      `${restorationRequest.omittedEntities.reduce((a, c) => a + `&omittedEntities=${c}`, '')}`;
+
     const response = await axios.request({
-    url: `${rescueDumpServer.baseUrl}/api/rescue-dumps`,
+    url: `${rescueDumpServer.baseUrl}/api/rescue-dumps?${queryString}`,
     method: 'PATCH',
     headers: {
       Authorization: `Bearer ${rescueDumpServer.authToken.token}`,
       Accept: 'application/json'
-    },
-    params: restorationRequest
+    }
   });
   return response.status === 200;
   } catch (error) {
