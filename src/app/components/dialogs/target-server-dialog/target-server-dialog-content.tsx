@@ -22,7 +22,7 @@ export const TargetServerDialogContent = ( { callback }: {callback: TargetDialog
           validationGroupResult.validators?.find(() => true).focus();
         }
       } else {
-        showDialog('TargetServerDialog',  { visible: false } as DialogProps);
+        showDialog('TargetServerDialog', { visible: false } as DialogProps);
 
         if(formData && (formData as any).name) {
           callback((formData as any).name);

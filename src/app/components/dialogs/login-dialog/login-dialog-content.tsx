@@ -54,7 +54,7 @@ export const LoginDialogContent = ({ rescueDumpServer }: { rescueDumpServer: Res
         notify({ message: 'The authorization was failed.' }, 'error', 5000);
       }
 
-      showDialog(LoginDialog.name, { visible: false } as DialogProps);
+      showDialog('LoginDialog', { visible: false } as DialogProps);
 
       setAppSettings(previous => {
         const currentRescueDumpServer = previous.rescueDumpServers.find(s => s.id === rescueDumpServer.id);

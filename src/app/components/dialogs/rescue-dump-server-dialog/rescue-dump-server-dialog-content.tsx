@@ -62,7 +62,7 @@ export const RescueDumpServerDialogContent = () => {
         });
       }
 
-      showDialog(RescueDumpServerDialog.name,  { visible: false } as DialogProps);
+      showDialog('RescueDumpServerDialog',  { visible: false } as DialogProps);
     }
   }, [setAppSettings, showDialog]);
 
