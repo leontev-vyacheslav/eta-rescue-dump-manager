@@ -39,46 +39,49 @@ export const useFileMenuItems = () => {
           visible: location.pathname === '/app-settings'
         },
         {
-        text: 'Refresh',
-        icon: () => <RefreshIcon size={24} />,
-        onClick: async () => {
-          await removeRescueDumpGroupedListAsync();
-          setRefreshToken(
-            window.crypto.getRandomValues(new Uint8Array(9)).join('')
-          );
+          text: 'Refresh',
+          icon: () => <RefreshIcon size={24} />,
+          onClick: async () => {
+            if (location.pathname === '/') {
+              await removeRescueDumpGroupedListAsync();
+            }
+            
+            setRefreshToken(
+              window.crypto.getRandomValues(new Uint8Array(9)).join('')
+            );
+          },
+          visible: location.pathname === '/' || location.pathname === '/device-readers-health-check'
         },
-        visible: location.pathname === '/' || location.pathname === '/device-readers-health-check'
-      },
-      {
-        text: 'Settings...',
-        icon: () => <SettingsIcon size={24} />,
-        onClick: async () => {
-          navigate('/app-settings');
+        {
+          text: 'Settings...',
+          icon: () => <SettingsIcon size={24} />,
+          onClick: async () => {
+            navigate('/app-settings');
+          },
+          visible: location.pathname !== '/app-settings'
         },
-        visible:  location.pathname !== '/app-settings'
-      },
-      {
-        text: 'About...',
-        icon: () => <AboutIcon size={24} />,
-        onClick: () => showDialog('AboutDialog', { visible: true } as DialogProps)
-      },
-      {
-        text: 'Dev tools...',
-        icon: () => <ToolsIcon size={24} />,
-        onClick: async () => {
-          await app.toggleDevToolsAsync();
-        }
-      },
-      {
-        text: 'Exit',
-        icon: () => <ExitIcon size={24} />,
-        onClick: async () => {
-          const dialogResult = await confirm('The application will be closed! Are you sure?', 'Confirm');
-          if (dialogResult === true) {
-            await app.quitAppAsync();
+        {
+          text: 'About...',
+          icon: () => <AboutIcon size={24} />,
+          onClick: () => showDialog('AboutDialog', { visible: true } as DialogProps)
+        },
+        {
+          text: 'Dev tools...',
+          icon: () => <ToolsIcon size={24} />,
+          onClick: async () => {
+            await app.toggleDevToolsAsync();
           }
-        }
-      }]
+        },
+        {
+          text: 'Exit',
+          icon: () => <ExitIcon size={24} />,
+          onClick: async () => {
+            const dialogResult = await confirm('The application will be closed! Are you sure?', 'Confirm');
+            if (dialogResult === true) {
+              await app.quitAppAsync();
+            }
+          }
+        }]
     }];
   }, [location.pathname, navigate, removeRescueDumpGroupedListAsync, setRefreshToken, showDialog]);
 };

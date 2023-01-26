@@ -10,10 +10,12 @@ import { DeviceReaderHealthCheckRouterStateModel } from '../../models/device-rea
 import { DeviceReaderHealthCheckPageModes } from '../../models/device-reader-health-check-page-modes';
 import { DeviceReadersHealthCheckListGroup } from './device-readers-health-check-list-group';
 import { DeviceReadersHealthCheckListItem } from './device-readers-health-check-list-item';
+import { useExternalBridgeContext } from '../../contexts/external-bridge-context';
 
 export const DeviceReadersHealthCheckPage = () => {
   const listRef = useRef<List>(null);
-  const { appSettings } = useSharedContext();
+  const { appSettings, refreshToken, setIsShowLoadPanel } = useSharedContext();
+  const { getDeviceReadersHealthCheckAsync } = useExternalBridgeContext();
   const [deviceReadersHealthCheckGroupedList, setDeviceReadersHealthCheckGroupList] = useState<DeviceReaderHealthCheckGroupModel[] | null>(null);
   const { state } = useLocation();
   const routerPageCommand = state as DeviceReaderHealthCheckRouterStateModel;
@@ -26,17 +28,23 @@ export const DeviceReadersHealthCheckPage = () => {
       }
       let index = 0;
       if (routerPageCommand.mode === DeviceReaderHealthCheckPageModes.multiple) {
-        for (const rescueDumpServer of appSettings.rescueDumpServers) {
-          const deviceReadersHealthChecks = await window.externalBridge.getDeviceReadersHealthCheckAsync(rescueDumpServer);
+        try {
+          setIsShowLoadPanel(true);
+          for (const rescueDumpServer of appSettings.rescueDumpServers) {
+            const deviceReadersHealthChecks = await getDeviceReadersHealthCheckAsync(rescueDumpServer, true);
 
-          if (deviceReadersHealthChecks) {
-            const item = {
-              index: index++,
-              key: rescueDumpServer.name,
-              items: deviceReadersHealthChecks,
-            } as DeviceReaderHealthCheckGroupModel;
-            list.push(item);
+            if (deviceReadersHealthChecks) {
+              const item = {
+                index: index++,
+                key: rescueDumpServer.name,
+                items: deviceReadersHealthChecks,
+              } as DeviceReaderHealthCheckGroupModel;
+              list.push(item);
+            }
           }
+         }
+         finally {
+          setIsShowLoadPanel(false);
         }
 
         setDeviceReadersHealthCheckGroupList(list);
@@ -44,7 +52,7 @@ export const DeviceReadersHealthCheckPage = () => {
         const selectedRescueDumpServer = appSettings.rescueDumpServers.find((s) => s.name === routerPageCommand.serverName);
 
         if (selectedRescueDumpServer) {
-          const deviceReadersHealthChecks = await window.externalBridge.getDeviceReadersHealthCheckAsync(selectedRescueDumpServer);
+          const deviceReadersHealthChecks = await getDeviceReadersHealthCheckAsync(selectedRescueDumpServer);
           if (deviceReadersHealthChecks) {
             const item = {
               index: index,
@@ -59,7 +67,7 @@ export const DeviceReadersHealthCheckPage = () => {
         }
       }
     })();
-  }, [appSettings, routerPageCommand]);
+  }, [appSettings, routerPageCommand, refreshToken, getDeviceReadersHealthCheckAsync, setIsShowLoadPanel]);
 
   return (
     <>

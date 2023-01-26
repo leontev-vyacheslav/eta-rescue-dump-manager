@@ -95,6 +95,20 @@ const ExternalBridgeContextProvider = (props: any) => {
     }
   }, [setIsShowLoadPanel]);
 
+  const getDeviceReadersHealthCheckAsync = useCallback(async (rescueDumpServer: RescueDumpServerModel, suppressLoader: boolean = false) => {
+    if (suppressLoader) {
+      return await window.externalBridge.getDeviceReadersHealthCheckAsync(rescueDumpServer);
+    }
+
+    try {
+      setIsShowLoadPanel(true);
+      return await window.externalBridge.getDeviceReadersHealthCheckAsync(rescueDumpServer);
+    }
+    finally {
+      setIsShowLoadPanel(false);
+    }
+  }, [setIsShowLoadPanel]);
+
   return <ExternalBridgeContext.Provider value={{
     removeRescueDumpGroupedListAsync,
     getRescueDumpGroupedListAsync,
@@ -104,7 +118,8 @@ const ExternalBridgeContextProvider = (props: any) => {
     saveRescueDumpContentFileAsync,
     getAuthTokenAsync,
     removeRescueDumpAsync,
-    createRescueDumpAsync
+    createRescueDumpAsync,
+    getDeviceReadersHealthCheckAsync
   }} {...props} />;
 };
 
