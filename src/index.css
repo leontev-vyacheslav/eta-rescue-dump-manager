@@ -6,6 +6,10 @@ body {
 
 .app-popup {
   outline: 0;
+
+}
+.app-popup .dx-popup-title.dx-toolbar .dx-button.dx-closebutton {
+  display: inline-flex;
 }
 
 .app-popup .dx-popup-content {

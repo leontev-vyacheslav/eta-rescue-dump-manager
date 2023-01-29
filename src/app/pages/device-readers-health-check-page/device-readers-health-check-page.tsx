@@ -22,11 +22,15 @@ export const DeviceReadersHealthCheckPage = () => {
 
   useEffect(() => {
     (async () => {
-      const list: DeviceReaderHealthCheckGroupModel[] = [];
+
+
       if (!appSettings || !appSettings.rescueDumpServers || !routerPageCommand) {
         return;
       }
+
+      const list: DeviceReaderHealthCheckGroupModel[] = [];
       let index = 0;
+
       if (routerPageCommand.mode === DeviceReaderHealthCheckPageModes.multiple) {
         try {
           setIsShowLoadPanel(true);
@@ -60,9 +64,7 @@ export const DeviceReadersHealthCheckPage = () => {
               items: deviceReadersHealthChecks,
             } as DeviceReaderHealthCheckGroupModel;
 
-            setDeviceReadersHealthCheckGroupList((previous) => {
-              return previous ? [...previous, item] : [item];
-            });
+            setDeviceReadersHealthCheckGroupList( [item]);
           }
         }
       }
