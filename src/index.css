@@ -12,6 +12,10 @@ body {
   display: inline-flex;
 }
 
+.app-popup .dx-popup-title.dx-toolbar {
+  padding-right: 12px;
+}
+
 .app-popup .dx-popup-content {
   padding: 10px;
 }
