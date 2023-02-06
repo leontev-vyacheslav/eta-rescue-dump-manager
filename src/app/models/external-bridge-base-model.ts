@@ -39,7 +39,7 @@ type SignalR = {
 };
 
 type Data = {
-  createRescueDumpAsync: (rescueDumpServer: RescueDumpServerModel) => Promise<boolean>;
+  createRescueDumpAsync: (rescueDumpServer: RescueDumpServerModel, optionalEntities: string[]) => Promise<boolean>;
 }
 
 export type ExternalBridgeBaseModel = {

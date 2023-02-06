@@ -1,7 +1,7 @@
 {
   "name": "rescue-dump-manager",
   "productName": "ETA rescue dump manager",
-  "version": "2023.1.29",
+  "version": "2023.2.02",
   "description": "ETA rescue dump manager",
   "main": ".webpack/main",
   "scripts": {

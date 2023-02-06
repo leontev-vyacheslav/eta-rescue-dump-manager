@@ -23,7 +23,7 @@ import fetch from 'node-fetch';
 import { FileCloudStorageFileInfo } from './app/models/file-cloud-storage-file-info';
 import { DeviceReaderHealthCheckModel } from './app/models/device-reader-health-check-model';
 
-type SimpleRescueDumpAsyncFunc = (rescueDumpServer: RescueDumpServerModel) => Promise<boolean>;
+type SimpleRescueDumpAsyncFunc = (rescueDumpServer: RescueDumpServerModel, optionalEntities: string[]) => Promise<boolean>;
 
 export const getAuthTokenAsync = async (rescueDumpServer: RescueDumpServerModel, login: LoginModel) => {
 
@@ -174,7 +174,7 @@ export const removeRescueDumpAsync = async (rescueDumpServer: RescueDumpServerMo
   }
 };
 
-export const createRescueDumpAsync: SimpleRescueDumpAsyncFunc = async (rescueDumpServer: RescueDumpServerModel) => {
+export const createRescueDumpAsync: SimpleRescueDumpAsyncFunc = async (rescueDumpServer: RescueDumpServerModel, optionalEntities: string[]) => {
   try {
     await axios.request({
       url: `${rescueDumpServer.baseUrl}/api/rescue-dumps`,
@@ -182,14 +182,15 @@ export const createRescueDumpAsync: SimpleRescueDumpAsyncFunc = async (rescueDum
       headers: {
         Authorization: `Bearer ${rescueDumpServer.authToken.token}`,
         Accept: 'application/json'
-      }
+      },
+      data: optionalEntities
     });
 
     return true;
   } catch (error) {
     let result = false;
     await updateAuthTokenAsync(error, rescueDumpServer, async (updatedRescueDumpServer: RescueDumpServerModel) => {
-      result = await createRescueDumpAsync(updatedRescueDumpServer);
+      result = await createRescueDumpAsync(updatedRescueDumpServer, optionalEntities);
     });
 
     return result;
@@ -261,7 +262,7 @@ export const restoreDatabaseAsync = async (rescueDumpServer: RescueDumpServerMod
     const queryString =
       `fileId=${restorationRequest.fileId}` +
       `&securityPass=${restorationRequest.securityPass}` +
-      `${restorationRequest.omittedEntities.reduce((a, c) => a + `&omittedEntities=${c}`, '')}`;
+      `${restorationRequest.optionalEntities.reduce((a, c) => a + `&optionalEntities=${c}`, '')}`;
 
     const response = await axios.request({
     url: `${rescueDumpServer.baseUrl}/api/rescue-dumps?${queryString}`,

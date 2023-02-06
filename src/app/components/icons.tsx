@@ -38,6 +38,8 @@ export { RiUserUnfollowLine as UnauthorizedIcon } from 'react-icons/ri';
 export { IoBookmarkOutline as BookmarkIcon } from 'react-icons/io5';
 export { RiServerFill as ActiveServerIcon } from 'react-icons/ri';
 export { RiServerLine as InactiveServerIcon } from 'react-icons/ri';
+export { FiBox as EntityIcon } from 'react-icons/fi';
+
 
 // DeviseReader
 export { TbSum as TotalIcon } from 'react-icons/tb';

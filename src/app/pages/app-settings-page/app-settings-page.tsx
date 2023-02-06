@@ -3,6 +3,7 @@ import { ScrollView } from 'devextreme-react/ui/scroll-view';
 import { useEffect } from 'react';
 import { useSharedContext } from '../../contexts/shared-context';
 import { AppSettingPageContextProvider } from './app-setting-page-context';
+import { OptionalEntityList } from './optional-entity-list';
 import { RescueDumpServerList } from './rescue-dump-server-list';
 
 const app = window.externalBridge.app;
@@ -43,6 +44,14 @@ export const AppSettingsPage = () => {
               <RescueDumpServerList />
             </AppSettingPageContextProvider>
           )}
+        />
+        <SimpleItem
+          label={{ visible: false }}
+          render={() => {
+            return (
+             <OptionalEntityList />
+            );
+          }}
         />
       </Form>
     </ScrollView>

@@ -70,8 +70,8 @@ contextBridge.exposeInMainWorld('externalBridge', {
   },
 
   data: {
-    createRescueDumpAsync: async (rescueDumpServer: RescueDumpServerModel) => {
-      return await ipcRenderer.invoke('data:createRescueDumpAsync', { rescueDumpServer });
+    createRescueDumpAsync: async (rescueDumpServer: RescueDumpServerModel, optionalEntities: string[]) => {
+      return await ipcRenderer.invoke('data:createRescueDumpAsync', { rescueDumpServer, optionalEntities });
     },
   },
 

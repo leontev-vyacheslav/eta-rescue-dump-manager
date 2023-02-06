@@ -47,19 +47,30 @@ export const TraceMessageViewer = () => {
         await window.externalBridge.signalR.startAsync();
 
         if (traceMessageRouterState.name === TraceMessageCommandName.createDump) {
-          await window.externalBridge.data.createRescueDumpAsync(selectedRescueDumpServer);
+          const dialogResult = await confirm(
+            'Do you want to dump tables from an optional entities list?',
+            'Confirm'
+          );
+          const optionalEntities: string[] = dialogResult
+            ? appSettings.optionalEntities
+              .filter(o => o.isReserved === true)
+              .map(o => o.entityTypeName)
+            : [];
+
+          await window.externalBridge.data.createRescueDumpAsync(selectedRescueDumpServer, optionalEntities);
+
         } else if (traceMessageRouterState.name === TraceMessageCommandName.restoration) {
           const restorationCommand = state as RestorationTraceMessageRouterStateModel;
           if (restorationCommand.securityPass) {
             const dialogResult = await confirm(
-              'Do you want to restore such tables as Business.Archive and Business.TimeSignature?',
+              'Do you want to restore tables from an optional entities list?',
               'Confirm'
             );
 
             await window.externalBridge.restoreDatabaseAsync(selectedRescueDumpServer, {
               fileId: restorationCommand.fileId,
               securityPass: restorationCommand.securityPass,
-              omittedEntities: dialogResult ? [] : ['Business.Archive', 'Business.TimeSignature']
+              optionalEntities: dialogResult ? [] : appSettings.optionalEntities.filter(o => o.isRestored === true).map(o => o.entityTypeName)
             });
           }
         }

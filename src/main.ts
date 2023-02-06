@@ -239,9 +239,9 @@ ipcMain.handle('data:removeRescueDumpAsync', async (_, args) => {
 });
 
 ipcMain.handle('data:createRescueDumpAsync', async (_, args) => {
-  const { rescueDumpServer }: { rescueDumpServer: RescueDumpServerModel } = args;
+  const { rescueDumpServer, optionalEntities }: { rescueDumpServer: RescueDumpServerModel, optionalEntities: string[] } = args;
 
-  return await createRescueDumpAsync(rescueDumpServer);
+  return await createRescueDumpAsync(rescueDumpServer, optionalEntities);
 });
 
 ipcMain.handle ('data:sendRequestSecurityPass', async (_, args) => {

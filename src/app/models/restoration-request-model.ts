@@ -3,5 +3,5 @@ export type RestorationRequestModel = {
 
   securityPass: string;
 
-  omittedEntities: string[];
+  optionalEntities:  string[];
 }

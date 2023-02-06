@@ -16,7 +16,7 @@ export const RescueDumpServerList = () => {
     <>
       <PageToolbar title={'Rescue dump server list'} menuItems={extensionMenuItems} />
       <List
-      className='rescue-dump-server-list'
+        className='rescue-dump-server-list'
         height={250}
         dataSource={appSettings ? appSettings.rescueDumpServers : []}
         selectionMode={'single'}

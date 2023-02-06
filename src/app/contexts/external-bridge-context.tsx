@@ -86,10 +86,10 @@ const ExternalBridgeContextProvider = (props: any) => {
     }
   }, [setIsShowLoadPanel]);
 
-  const createRescueDumpAsync = useCallback(async (rescueDumpServer: RescueDumpServerModel) => {
+  const createRescueDumpAsync = useCallback(async (rescueDumpServer: RescueDumpServerModel, optionalEntities: string[]) => {
     try {
       setIsShowLoadPanel(true);
-        return rescueDumpServer ? await window.externalBridge.data.createRescueDumpAsync(rescueDumpServer): false;
+        return rescueDumpServer ? await window.externalBridge.data.createRescueDumpAsync(rescueDumpServer, optionalEntities): false;
     } finally {
       setIsShowLoadPanel(false);
     }
