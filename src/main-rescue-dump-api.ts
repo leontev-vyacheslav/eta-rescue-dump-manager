@@ -22,6 +22,7 @@ import fetch from 'node-fetch';
 
 import { FileCloudStorageFileInfo } from './app/models/file-cloud-storage-file-info';
 import { DeviceReaderHealthCheckModel } from './app/models/device-reader-health-check-model';
+import { WebWorkerResourceUsageModel } from './app/models/web-worker-memory-usage';
 
 type SimpleRescueDumpAsyncFunc = (rescueDumpServer: RescueDumpServerModel, optionalEntities: string[]) => Promise<boolean>;
 
@@ -275,6 +276,7 @@ export const restoreDatabaseAsync = async (rescueDumpServer: RescueDumpServerMod
   return response.status === 200;
   } catch (error) {
     let result = false;
+
     await updateAuthTokenAsync(error, rescueDumpServer, async (updatedRescueDumpServer: RescueDumpServerModel) => {
       result = await restoreDatabaseAsync(updatedRescueDumpServer, restorationRequest);
     });
@@ -298,6 +300,7 @@ export const sendRequestSecurityPass = async (rescueDumpServer: RescueDumpServer
     return response.status === 200;
   } catch (error) {
     let result = false;
+
     await updateAuthTokenAsync(error, rescueDumpServer, async (updatedRescueDumpServer: RescueDumpServerModel) => {
       result = await sendRequestSecurityPass(updatedRescueDumpServer, securityPassRequest);
     });
@@ -328,8 +331,33 @@ export const getDeviceReadersHealthCheckAsync = async (rescueDumpServer: RescueD
     return response.data as DeviceReaderHealthCheckModel[];
   } catch (error) {
     let result = null;
+
     await updateAuthTokenAsync(error, rescueDumpServer, async (updatedRescueDumpServer: RescueDumpServerModel) => {
       result = await getDeviceReadersHealthCheckAsync(updatedRescueDumpServer);
+    });
+
+    return result;
+  }
+};
+
+export const getWebWorkerMemoryUsagesAsync = async (rescueDumpServer: RescueDumpServerModel) => {
+  try {
+    const response = await axios.request({
+      url: `${rescueDumpServer.baseUrl}/api/web-worker-resource-usages`,
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${rescueDumpServer.authToken.token}`,
+        Accept: 'application/json'
+      }
+    });
+
+    return response.data as WebWorkerResourceUsageModel[];
+
+  } catch (error) {
+    let result = null;
+
+    await updateAuthTokenAsync(error, rescueDumpServer, async (updatedRescueDumpServer: RescueDumpServerModel) => {
+      result = await getWebWorkerMemoryUsagesAsync(updatedRescueDumpServer);
     });
 
     return result;
