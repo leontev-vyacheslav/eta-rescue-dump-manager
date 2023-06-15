@@ -1,5 +1,5 @@
 import './rescue-dump-content-list-page.css';
-import { List } from 'devextreme-react/ui/list';
+import { List } from 'devextreme-react/list';
 import { useSharedContext } from '../../contexts/shared-context';
 import { useExternalBridgeContext } from '../../contexts/external-bridge-context';
 import { useEffect, useState } from 'react';
@@ -44,4 +44,3 @@ export const RescueDumpContentListPage = () => {
     </RescueDumpContentListPageContextProvider>
   );
 };
-

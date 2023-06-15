@@ -1,4 +1,4 @@
-import Popup from 'devextreme-react/ui/popup';
+import Popup from 'devextreme-react/popup';
 import { useEffect } from 'react';
 import { useSharedContext } from '../../../contexts/shared-context';
 import { LoginDialogContent } from './login-dialog-content';

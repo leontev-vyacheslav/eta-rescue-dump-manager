@@ -1,4 +1,4 @@
-import { Popup } from 'devextreme-react/ui/popup';
+import { Popup } from 'devextreme-react/popup';
 import { DialogProps } from '../../../models/dialog-props';
 import { useCommonDialogsContext } from '../../../contexts/common-dialogs-context';
 import { AboutDialogContent } from './about-dialog-content';

@@ -1,5 +1,5 @@
 import './about-dialog-content.css';
-import Button from 'devextreme-react/ui/button';
+import Button from 'devextreme-react/button';
 import { DialogConstants } from '../../../constants/dialogs';
 import { AboutDialogIcon } from '../../icons';
 import { useCommonDialogsContext } from '../../../contexts/common-dialogs-context';

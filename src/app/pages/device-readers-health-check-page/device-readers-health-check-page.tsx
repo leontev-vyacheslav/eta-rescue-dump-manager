@@ -1,5 +1,5 @@
 import './device-readers-health-check-list-item.css';
-import { List } from 'devextreme-react/ui/list';
+import { List } from 'devextreme-react/list';
 import { useEffect, useRef, useState } from 'react';
 import { DeviceReaderHealthCheckGroupModel } from '../../models/device-reader-health-check-group-model';
 import { DeviceReaderHealthCheckModel } from '../../models/device-reader-health-check-model';

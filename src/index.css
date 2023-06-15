@@ -6,8 +6,8 @@ body {
 
 .app-popup {
   outline: 0;
-
 }
+
 .app-popup .dx-popup-title.dx-toolbar .dx-button.dx-closebutton {
   display: inline-flex;
 }
@@ -22,6 +22,10 @@ body {
 
 .app-popup .dx-popup-title.dx-toolbar .dx-toolbar-items-container {
   height: 46px;
+}
+
+.app-popup .dx-popup-content-scrollable {
+  overflow: hidden;
 }
 
 .dx-dialog .dx-toolbar-items-container{

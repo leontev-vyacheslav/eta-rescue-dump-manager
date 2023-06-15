@@ -1,4 +1,4 @@
-import CheckBox from 'devextreme-react/ui/check-box';
+import CheckBox from 'devextreme-react/check-box';
 import { useSharedContext } from '../../contexts/shared-context';
 import { EntityIcon } from '../../components/icons';
 import { OptionalEntityModel } from '../../models/optional-entity-model';

@@ -1,3 +1,3 @@
 export const appConstants = {
-  version: '2023.2.02'
+  version: '2023.6.09'
 };
