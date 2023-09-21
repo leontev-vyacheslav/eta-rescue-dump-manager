@@ -1,0 +1,97 @@
+{
+    "invalidationCacheInterval": 5,
+    "lastActiveRescueDumpServerId": 1,
+    "rescueDumpServers": [
+        {
+            "id": 1,
+            "baseUrl": "https://eta24.ru:15003",
+            "displayed": true,
+            "authToken": {
+                "userName": "eta.sys.leo",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXRhLnN5cy5sZW8iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTiIsIm5iZiI6MTY5NTI2ODY1NCwiZXhwIjoxNjk1Mjg2NjU0LCJpc3MiOiJFVEEyNCIsImF1ZCI6IkVUQTI0V2ViQ2xpZW50In0.2PTY9_md3NxqeeeL5c5dJn4_BvdbMV_s9EYreCpfSXw"
+            },
+            "login": {
+                "userName": "eta.sys.leo",
+                "password": "n4f$p2U5",
+                "serverName": "ETA24"
+            },
+            "name": "ETA24"
+        },
+        {
+            "id": 2,
+            "baseUrl": "http://asd.eta24.ru:15002",
+            "displayed": true,
+            "authToken": {
+                "userName": "eta.sys.leo",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXRhLnN5cy5sZW8iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTiIsIm5iZiI6MTY5NTI2ODY1OCwiZXhwIjoxNjk1Mjg2NjU4LCJpc3MiOiJFVEEyNCIsImF1ZCI6IkVUQTI0V2ViQ2xpZW50In0.AxIchl7DegbzhAF69Ycvn5_XMImgTD1V4JruNeIGIX0"
+            },
+            "login": {
+                "userName": "eta.sys.leo",
+                "password": "n4f$p2U5",
+                "serverName": "ASD.ETA24"
+            },
+            "name": "ASD.ETA24"
+        },
+        {
+            "id": 3,
+            "baseUrl": "http://house.eta24.ru:15002",
+            "displayed": true,
+            "authToken": {
+                "userName": "eta.sys.leo",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXRhLnN5cy5sZW8iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTiIsIm5iZiI6MTY5NTI2ODY2MywiZXhwIjoxNjk1Mjg2NjYzLCJpc3MiOiJFVEEyNCIsImF1ZCI6IkVUQTI0V2ViQ2xpZW50In0.sFoe0lumNtyPzXYHHdU8Z6gFCn9dYET88cL1x80Q8ZQ"
+            },
+            "login": {
+                "userName": "eta.sys.leo",
+                "password": "n4f$p2U5",
+                "serverName": "HOUSE.ETA24"
+            },
+            "name": "HOUSE.ETA24"
+        },
+        {
+            "id": 4,
+            "baseUrl": "http://chelny.eta24.ru:15002",
+            "displayed": true,
+            "authToken": {
+                "userName": "eta.sys.leo",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXRhLnN5cy5sZW8iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTiIsIm5iZiI6MTY5NTI2ODY2MSwiZXhwIjoxNjk1Mjg2NjYxLCJpc3MiOiJFVEEyNCIsImF1ZCI6IkVUQTI0V2ViQ2xpZW50In0.aHPTPhnRab0R0oK1FkGb3qz4gq5NwR_K9KTGItHHxU0"
+            },
+            "login": {
+                "userName": "eta.sys.leo",
+                "password": "n4f$p2U5",
+                "serverName": "CHELNY.ETA24"
+            },
+            "name": "CHELNY.ETA24"
+        },
+        {
+            "id": 5,
+            "baseUrl": "http://pshik.eta24.ru:15002",
+            "displayed": true,
+            "authToken": null,
+            "login": null,
+            "name": "PSHIK.ETA24"
+        },
+        {
+            "id": 6,
+            "baseUrl": "http://tvgen.eta24.ru:15002",
+            "displayed": true,
+            "authToken": null,
+            "login": null,
+            "name": "TVGEN"
+        },
+        {
+            "id": 7,
+            "baseUrl": "http://localhost:5002",
+            "displayed": true,
+            "authToken": {
+                "userName": "eta.sys.leo",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXRhLnN5cy5sZW8iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTiIsIm5iZiI6MTY5NTI4MDk1MCwiZXhwIjoxNjk1MjgxMDEwLCJpc3MiOiJFVEEyNCIsImF1ZCI6IkVUQTI0R2VvbG9jYXRpb25Nb2JpbGVUcmFja2VyIn0.ZPENvhd5kX20v2lgFlBGXOgOJ_UXt342B0GXZAAErso"
+            },
+            "login": {
+                "userName": "eta.sys.leo",
+                "password": "gh8nc3pe4",
+                "serverName": "DEVELOPMENT.ETA24"
+            },
+            "name": "DEVELOPMENT.ETA24"
+        }
+    ]
+}

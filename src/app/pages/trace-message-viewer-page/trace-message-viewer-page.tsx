@@ -70,7 +70,9 @@ export const TraceMessageViewer = () => {
             await window.externalBridge.restoreDatabaseAsync(selectedRescueDumpServer, {
               fileId: restorationCommand.fileId,
               securityPass: restorationCommand.securityPass,
-              optionalEntities: dialogResult ? [] : appSettings.optionalEntities.filter(o => o.isRestored === true).map(o => o.entityTypeName)
+              optionalEntities: dialogResult
+                ? []
+                : (appSettings.optionalEntities ? appSettings.optionalEntities.filter(o => o.isRestored === true).map(o => o.entityTypeName) : [])
             });
           }
         }
