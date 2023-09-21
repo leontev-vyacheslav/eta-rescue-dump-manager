@@ -1,5 +1,5 @@
 import './text-file-viewer-page.css';
-import { TextArea } from 'devextreme-react/ui/text-area';
+import { TextArea } from 'devextreme-react/text-area';
 import { useEffect, useState } from 'react';
 import { useSharedContext } from '../../contexts/shared-context';
 import { useExternalBridgeContext } from '../../contexts/external-bridge-context';

@@ -1,4 +1,4 @@
-import List from 'devextreme-react/ui/list';
+import List from 'devextreme-react/list';
 import { RescueDumpServerModel } from '../../models/rescue-dump-server-model';
 import { useSharedContext } from '../../contexts/shared-context';
 import { RescueDumpServerListItem } from './rescue-dump-server-list-item';

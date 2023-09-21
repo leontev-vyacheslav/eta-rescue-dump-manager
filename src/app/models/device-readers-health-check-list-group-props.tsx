@@ -1,4 +1,4 @@
-import { List } from 'devextreme-react/ui/list';
+import { List } from 'devextreme-react/list';
 import { MutableRefObject } from 'react';
 import { DeviceReaderHealthCheckGroupModel } from './device-reader-health-check-group-model';
 

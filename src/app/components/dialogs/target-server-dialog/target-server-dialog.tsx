@@ -1,4 +1,4 @@
-import { Popup } from 'devextreme-react/ui/popup';
+import { Popup } from 'devextreme-react/popup';
 import { DialogProps } from '../../../models/dialog-props';
 import { TargetServerDialogContent } from './target-server-dialog-content';
 import { TargetDialogProps } from '../../../models/target-dialog-props';

@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState } from 'react';
 import notify from 'devextreme/ui/notify';
-import { Button } from 'devextreme-react/ui/button';
-import { Form, SimpleItem } from 'devextreme-react/ui/form';
+import { Button } from 'devextreme-react/button';
+import { Form, SimpleItem } from 'devextreme-react/form';
 import { DialogConstants } from '../../../constants/dialogs';
 import { LoginModel } from '../../../models/login-model';
 import { useExternalBridgeContext } from '../../../contexts/external-bridge-context';

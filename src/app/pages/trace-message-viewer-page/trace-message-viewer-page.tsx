@@ -1,4 +1,4 @@
-import { TextArea } from 'devextreme-react/ui/text-area';
+import { TextArea } from 'devextreme-react/text-area';
 import { confirm } from 'devextreme/ui/dialog';
 import { useEffect, useRef } from 'react';
 import { useSharedContext } from '../../contexts/shared-context';

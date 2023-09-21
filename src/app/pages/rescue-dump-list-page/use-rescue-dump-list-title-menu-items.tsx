@@ -2,7 +2,7 @@ import notify from 'devextreme/ui/notify';
 import { MutableRefObject, useMemo } from 'react';
 import { useSharedContext } from '../../contexts/shared-context';
 import { CollapseIcon, DownloadIcon, ExpandIcon, ExtensionVertIcon, HealthCheckIcon } from '../../components/icons';
-import { List } from 'devextreme-react/ui/list';
+import { List } from 'devextreme-react/list';
 import { RescueDumpListGroupModel } from '../../models/rescue-dump-list-group-model';
 import { confirm } from 'devextreme/ui/dialog';
 import { DeviceReaderHealthCheckPageModes } from '../../models/device-reader-health-check-page-modes';

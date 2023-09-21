@@ -1,7 +1,7 @@
 import { RescueDumpServerModel } from '../../models/rescue-dump-server-model';
 import { MainMenu } from '../../components/menu/main-menu/main-menu';
 import { useSharedContext } from '../../contexts/shared-context';
-import { CheckBox } from 'devextreme-react/ui/check-box';
+import { CheckBox } from 'devextreme-react/check-box';
 import { useRescueDumpServerListRowMenuItems } from './use-rescue-dump-server-list-row-menu-items';
 import { ActiveServerIcon, InactiveServerIcon } from '../../components/icons';
 import { useAppSettingPageContext } from './app-setting-page-context';
@@ -32,4 +32,3 @@ export const RescueDumpServerListItem = ({ rescueDumpServer }: { rescueDumpServe
     </div>
   );
 };
-

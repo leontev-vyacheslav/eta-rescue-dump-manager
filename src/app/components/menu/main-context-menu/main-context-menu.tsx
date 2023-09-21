@@ -1,4 +1,4 @@
-import { ContextMenu } from 'devextreme-react/ui/context-menu';
+import { ContextMenu } from 'devextreme-react/context-menu';
 import { Item } from 'devextreme/ui/context_menu';
 import { forwardRef, Ref } from 'react';
 import { MenuItemModel } from '../../../models/menu-item-model';
@@ -13,7 +13,7 @@ const MainContextMenu = ({ innerRef, items }: ContextMenuProps) => {
 
   return <ContextMenu
         ref={ innerRef }
-        closeOnOutsideClick={ true }
+        hideOnOutsideClick={ true }
         itemRender={ (item) => <MenuItem item={ item } /> }
         showEvent={ 'suppress' }
         items={ items as unknown as Item[] }

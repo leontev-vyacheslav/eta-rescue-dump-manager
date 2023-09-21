@@ -1,4 +1,4 @@
-import { List } from 'devextreme-react/ui/list';
+import { List } from 'devextreme-react/list';
 import { OptionalEntityModel } from '../../models/optional-entity-model';
 import { useSharedContext } from '../../contexts/shared-context';
 import { OptionalEntityListItem } from './optional-entity-list-item';
@@ -23,4 +23,3 @@ export const OptionalEntityList = () => {
         </>
     );
 };
-

@@ -1,5 +1,5 @@
-import { Button } from 'devextreme-react/ui/button';
-import { Form, SimpleItem } from 'devextreme-react/ui/form';
+import { Button } from 'devextreme-react/button';
+import { Form, SimpleItem } from 'devextreme-react/form';
 import { DialogConstants } from '../../../constants/dialogs';
 import { useSharedContext } from '../../../contexts/shared-context';
 import { useCallback, useRef, useState } from 'react';

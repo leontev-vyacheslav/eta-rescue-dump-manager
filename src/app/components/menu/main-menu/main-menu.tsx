@@ -1,5 +1,5 @@
 import '../main-menu.css';
-import { Menu } from 'devextreme-react/ui/menu';
+import { Menu } from 'devextreme-react/menu';
 import { MenuItem } from '../menu-item/menu-item';
 import { MenuItemModel } from '../../../models/menu-item-model';
 import { Item } from 'devextreme/ui/menu';
@@ -25,5 +25,3 @@ const MainMenuInner = ({ items, innerRef }: MainMenuProps) => {
 export const MainMenu = forwardRef<Menu<any>, MainMenuProps>((props, ref) =>
   <MainMenuInner { ...props } innerRef={ ref }/>
 );
-
-

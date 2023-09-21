@@ -1,5 +1,5 @@
-import { Form, SimpleItem } from 'devextreme-react/ui/form';
-import { ScrollView } from 'devextreme-react/ui/scroll-view';
+import { Form, SimpleItem } from 'devextreme-react/form';
+import { ScrollView } from 'devextreme-react/scroll-view';
 import { useEffect } from 'react';
 import { useSharedContext } from '../../contexts/shared-context';
 import { AppSettingPageContextProvider } from './app-setting-page-context';
