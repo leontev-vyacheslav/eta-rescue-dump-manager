@@ -1,8 +1,10 @@
 {
-  "name": "rescue-dump-manager",
-  "productName": "ETA rescue dump manager",
+  "name": "eta-rescue-dump-manager",
+  "productName": "eta-rescue-dump-manager",
+  "executableName": "eta-rescue-dump-manager",
+  "bin": "eta-rescue-dump-manager",
   "version": "2023.6.09",
-  "description": "ETA rescue dump manager",
+  "description": "eta-rescue-dump-manager",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
@@ -20,12 +22,15 @@
   "license": "MIT",
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "name": "eta-rescue-dump-manager",
+        "executableName": "eta-rescue-dump-manager"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "rescue-dump-manager"
+            "name": "eta-rescue-dump-manager"
           }
         },
         {
