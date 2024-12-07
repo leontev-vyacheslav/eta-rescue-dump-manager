@@ -48,3 +48,6 @@ body {
   height: calc(100vh - 70px);
   padding: 10px;
 }
+.dx-list-group-header {
+  display: initial !important
+}
