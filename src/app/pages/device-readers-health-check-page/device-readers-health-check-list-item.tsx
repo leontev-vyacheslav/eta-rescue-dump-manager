@@ -5,15 +5,17 @@ import { DeviceReadersHealthCheckListItemProps } from '../../models/device-reade
 
 export const DeviceReadersHealthCheckListItem = ({ item }: DeviceReadersHealthCheckListItemProps) => {
   const getDeviceReaderStatusColor = useCallback((item: DeviceReaderHealthCheckModel) => {
+    console.log(item);
+
     return item.measurementDeviceCounter > 10 ?
       (
-        item.successPercent > 50
+        item.successPercent >= 50
           ? 'rgba(139, 195, 74, 1)'
           : (
-              item.successPercent < 50 && item.successPercent > 10
-                ? 'rgba(255, 193, 7, 1)'
-                : 'rgba(244, 67, 54, 1)'
-            )
+            item.successPercent < 50 && item.successPercent >= 10
+              ? 'rgba(255, 193, 7, 1)'
+              : 'rgba(244, 67, 54, 1)'
+          )
       )
       : 'gray';
   }, []);
